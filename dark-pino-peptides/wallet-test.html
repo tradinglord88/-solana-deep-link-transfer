@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wallet Test</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 50px;
+            background: #1a1a1a;
+            color: white;
+        }
+        button {
+            background: linear-gradient(135deg, #9945FF, #14F195);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Phantom Wallet Test</h1>
+    
+    <button id="connectBtn">Connect Phantom</button>
+    
+    <div id="status">
+        <p>Status: Not connected</p>
+        <p>Address: -</p>
+        <p>Phantom found: <span id="phantomFound">Checking...</span></p>
+    </div>
+    
+    <script>
+        // Check for Phantom
+        function checkPhantom() {
+            const found = !!(window.phantom?.solana || window.solana);
+            document.getElementById('phantomFound').textContent = found ? 'YES ✅' : 'NO ❌';
+            
+            if (!found) {
+                setTimeout(checkPhantom, 1000); // Keep checking
+            }
+            
+            return found;
+        }
+        
+        // Connect function
+        document.getElementById('connectBtn').addEventListener('click', async () => {
+            console.log('Connect button clicked');
+            
+            // Get provider
+            const provider = window.phantom?.solana || window.solana;
+            
+            if (!provider) {
+                alert('Phantom not found! Please:\n1. Install it from phantom.app\n2. Click the Phantom icon\n3. Refresh this page');
+                return;
+            }
+            
+            try {
+                // Connect
+                const resp = await provider.connect();
+                const address = resp.publicKey.toString();
+                
+                // Update UI
+                document.querySelector('#status p:nth-child(1)').textContent = 'Status: Connected ✅';
+                document.querySelector('#status p:nth-child(2)').textContent = 'Address: ' + address;
+                document.getElementById('connectBtn').textContent = address.slice(0,4) + '...' + address.slice(-4);
+                
+                console.log('Connected:', address);
+                
+            } catch (err) {
+                console.error('Connection failed:', err);
+                alert('Connection failed: ' + err.message);
+            }
+        });
+        
+        // Start checking
+        checkPhantom();
+        
+        // Check every second for 10 seconds
+        let checks = 0;
+        const interval = setInterval(() => {
+            checks++;
+            console.log(`Check ${checks}: phantom=${!!window.phantom}, solana=${!!window.solana}`);
+            
+            if (window.phantom?.solana || window.solana) {
+                clearInterval(interval);
+                console.log('Phantom detected!');
+                checkPhantom();
+            }
+            
+            if (checks > 10) {
+                clearInterval(interval);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

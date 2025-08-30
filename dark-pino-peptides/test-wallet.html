@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Wallet Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #1a1a1a;
+            color: white;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: linear-gradient(135deg, #9945FF, #14F195);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 10px;
+            min-width: 400px;
+        }
+        .success {
+            color: #14F195;
+        }
+        .error {
+            color: #ff4545;
+        }
+        pre {
+            background: #333;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Phantom Wallet Connection Test</h1>
+    
+    <button onclick="checkPhantom()">1. Check if Phantom Exists</button>
+    <button onclick="connectSimple()">2. Simple Connect</button>
+    <button onclick="connectWithTimeout()">3. Connect with Timeout</button>
+    <button onclick="connectEager()">4. Connect Eagerly</button>
+    <button onclick="disconnect()">5. Disconnect</button>
+    
+    <div id="status">
+        <h3>Status:</h3>
+        <div id="output">Click a button to test...</div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        function log(message, type = '') {
+            const className = type ? `class="${type}"` : '';
+            output.innerHTML += `<div ${className}>${message}</div>`;
+            console.log(message);
+        }
+        
+        function clear() {
+            output.innerHTML = '';
+        }
+        
+        // 1. Check if Phantom exists
+        function checkPhantom() {
+            clear();
+            log('Checking for Phantom wallet...');
+            
+            // Check all possible locations
+            const checks = {
+                'window.phantom': window.phantom,
+                'window.phantom?.solana': window.phantom?.solana,
+                'window.phantom?.solana?.isPhantom': window.phantom?.solana?.isPhantom,
+                'window.solana': window.solana,
+                'window.solana?.isPhantom': window.solana?.isPhantom,
+            };
+            
+            log('<pre>' + JSON.stringify(checks, null, 2) + '</pre>');
+            
+            if (window.phantom?.solana?.isPhantom) {
+                log('✅ Phantom found at window.phantom.solana', 'success');
+            } else if (window.solana?.isPhantom) {
+                log('✅ Phantom found at window.solana', 'success');
+            } else {
+                log('❌ Phantom not detected', 'error');
+                log('Make sure Phantom extension is installed and enabled');
+            }
+        }
+        
+        // 2. Simple connect
+        async function connectSimple() {
+            clear();
+            log('Attempting simple connection...');
+            
+            try {
+                const provider = window.phantom?.solana || window.solana;
+                
+                if (!provider) {
+                    throw new Error('No provider found');
+                }
+                
+                log('Provider found, calling connect()...');
+                const response = await provider.connect();
+                
+                log('✅ Connected!', 'success');
+                log('Wallet address: ' + response.publicKey.toString());
+                
+            } catch (error) {
+                log('❌ Error: ' + error.message, 'error');
+                console.error(error);
+            }
+        }
+        
+        // 3. Connect with timeout
+        async function connectWithTimeout() {
+            clear();
+            log('Waiting 1 second for wallet to be ready...');
+            
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            try {
+                const provider = window.phantom?.solana || window.solana;
+                
+                if (!provider) {
+                    throw new Error('No provider found after timeout');
+                }
+                
+                log('Provider found, calling connect()...');
+                const response = await provider.connect();
+                
+                log('✅ Connected!', 'success');
+                log('Wallet address: ' + response.publicKey.toString());
+                
+            } catch (error) {
+                log('❌ Error: ' + error.message, 'error');
+                console.error(error);
+            }
+        }
+        
+        // 4. Connect eagerly (auto-connect if previously connected)
+        async function connectEager() {
+            clear();
+            log('Attempting eager connection...');
+            
+            try {
+                const provider = window.phantom?.solana || window.solana;
+                
+                if (!provider) {
+                    throw new Error('No provider found');
+                }
+                
+                // Try eager connection first
+                log('Trying eagerly connect (auto-connect)...');
+                const response = await provider.connect({ onlyIfTrusted: true });
+                
+                log('✅ Auto-connected!', 'success');
+                log('Wallet address: ' + response.publicKey.toString());
+                
+            } catch (error) {
+                log('Auto-connect failed, trying manual connect...');
+                
+                try {
+                    const provider = window.phantom?.solana || window.solana;
+                    const response = await provider.connect();
+                    
+                    log('✅ Connected!', 'success');
+                    log('Wallet address: ' + response.publicKey.toString());
+                } catch (error2) {
+                    log('❌ Error: ' + error2.message, 'error');
+                }
+            }
+        }
+        
+        // 5. Disconnect
+        async function disconnect() {
+            clear();
+            log('Disconnecting...');
+            
+            try {
+                const provider = window.phantom?.solana || window.solana;
+                
+                if (!provider) {
+                    throw new Error('No provider found');
+                }
+                
+                await provider.disconnect();
+                log('✅ Disconnected', 'success');
+                
+            } catch (error) {
+                log('❌ Error: ' + error.message, 'error');
+            }
+        }
+        
+        // Check on page load
+        window.addEventListener('load', () => {
+            console.log('Page loaded, checking for Phantom...');
+            setTimeout(() => {
+                if (window.phantom?.solana?.isPhantom) {
+                    console.log('✅ Phantom detected on page load');
+                } else {
+                    console.log('❌ Phantom not detected on page load');
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>

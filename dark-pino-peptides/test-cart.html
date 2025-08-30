@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-btn { 
+            background: #9945FF; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            margin: 10px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+        .test-btn:hover { background: #7c3aed; }
+        .cart-count { 
+            background: red; 
+            color: white; 
+            border-radius: 50%; 
+            width: 20px; 
+            height: 20px; 
+            display: inline-block; 
+            text-align: center; 
+            line-height: 20px; 
+        }
+        #cartSidebar {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            border-left: 2px solid #9945FF;
+            transition: right 0.3s;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        #cartSidebar.active {
+            right: 0;
+        }
+        #cartOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        #cartOverlay.active {
+            display: block;
+        }
+        .cart-sidebar-wrapper {
+            padding: 20px;
+        }
+        .cart-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cart Functionality Test</h1>
+    
+    <div>
+        <button class="test-btn" onclick="testAddToCart()">Test addToCart Function</button>
+        <button class="test-btn" onclick="openCartSidebar()">Open Cart</button>
+        <button class="test-btn" onclick="addToCart('Test Product', 99.99, '5mg', 'test.jpg')">Add Test Product</button>
+    </div>
+    
+    <div>
+        Cart Count: <span class="cart-count" style="display: none;">0</span>
+    </div>
+    
+    <div>
+        <h3>Console Output:</h3>
+        <div id="console-output" style="background: #f5f5f5; padding: 10px; height: 200px; overflow-y: auto; font-family: monospace; font-size: 12px;"></div>
+    </div>
+    
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar">
+        <div class="cart-sidebar-wrapper">
+            <div class="cart-sidebar-header">
+                <h2>Shopping Cart</h2>
+                <button id="closeCart" style="float: right; background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+            </div>
+            <div id="cartItemsList"></div>
+            <div id="cartEmpty" style="text-align: center; padding: 20px;">
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay -->
+    <div id="cartOverlay"></div>
+    
+    <!-- Load the actual script -->
+    <script src="script.js?v=28"></script>
+    
+    <script>
+        // Console capture for debugging
+        const originalLog = console.log;
+        const originalError = console.error;
+        const outputDiv = document.getElementById('console-output');
+        
+        function appendToOutput(message, type = 'log') {
+            const color = type === 'error' ? 'red' : (type === 'warn' ? 'orange' : 'black');
+            outputDiv.innerHTML += `<div style="color: ${color};">${new Date().toLocaleTimeString()} [${type}]: ${message}</div>`;
+            outputDiv.scrollTop = outputDiv.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            appendToOutput(args.join(' '), 'log');
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            appendToOutput(args.join(' '), 'error');
+        };
+        
+        console.warn = function(...args) {
+            originalError.apply(console, args);
+            appendToOutput(args.join(' '), 'warn');
+        };
+        
+        function testAddToCart() {
+            console.log('=== Testing addToCart function ===');
+            console.log('window.addToCart type:', typeof window.addToCart);
+            console.log('window.realAddToCart type:', typeof window.realAddToCart);
+            
+            if (typeof window.addToCart === 'function') {
+                console.log('addToCart function signature:', window.addToCart.toString().substring(0, 100));
+                console.log('Calling addToCart with test data...');
+                try {
+                    window.addToCart('Test Product', 25.99, '10mg', 'test-image.jpg');
+                } catch (e) {
+                    console.error('Error calling addToCart:', e);
+                }
+            } else {
+                console.error('addToCart function not found!');
+            }
+        }
+        
+        // Test on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded - running tests');
+            setTimeout(function() {
+                console.log('=== Post-load Function Check ===');
+                console.log('Available functions:', Object.keys(window).filter(k => k.includes('cart') || k.includes('Cart')));
+                console.log('addToCart available:', typeof window.addToCart);
+                console.log('realAddToCart available:', typeof window.realAddToCart);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

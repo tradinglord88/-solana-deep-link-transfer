@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Debug</title>
+    <style>
+        body { background: #0D0D0D; color: white; font-family: Arial, sans-serif; padding: 20px; }
+        button { background: #9945FF; color: white; border: none; padding: 10px 20px; margin: 10px; border-radius: 5px; cursor: pointer; }
+        .debug { background: #2a2a2a; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .error { color: #ff4444; }
+        .success { color: #4ade80; }
+        .warn { color: #f59e0b; }
+    </style>
+</head>
+<body>
+    <h1>🐛 Cart System Debugger</h1>
+    
+    <div class="debug">
+        <h3>Step 1: Check Script Loading</h3>
+        <div id="script-status">Loading...</div>
+    </div>
+    
+    <div class="debug">
+        <h3>Step 2: Function Availability</h3>
+        <div id="function-status">Checking...</div>
+    </div>
+    
+    <div class="debug">
+        <h3>Step 3: DOM Elements</h3>
+        <div id="dom-status">Checking...</div>
+    </div>
+    
+    <div class="debug">
+        <h3>Step 4: Manual Tests</h3>
+        <button onclick="manualTest()">Test addToCart Directly</button>
+        <button onclick="testCartOpen()">Test Cart Open</button>
+        <button onclick="showTestNotification()">Test Notification</button>
+    </div>
+    
+    <div class="debug">
+        <h3>Debug Output:</h3>
+        <div id="debug-output" style="background: #1a1a1a; padding: 10px; height: 200px; overflow-y: auto; font-family: monospace; font-size: 12px;"></div>
+    </div>
+    
+    <!-- Minimal cart elements for testing -->
+    <div id="cartSidebar" style="position: fixed; right: -300px; top: 0; width: 300px; height: 100vh; background: #2a2a2a; transition: right 0.3s; z-index: 1000; padding: 20px;">
+        <h3>Cart</h3>
+        <button onclick="closeCart()">Close</button>
+        <div id="cartItemsList"></div>
+        <div id="cartEmpty">Cart is empty</div>
+        <div>Subtotal: <span id="cart-subtotal">$0.00</span></div>
+        <div>Tax: <span id="cart-tax">$0.00</span></div>
+        <div>Shipping: <span id="cart-shipping">$9.99</span></div>
+        <div>Total: <span id="cart-total">$0.00</span></div>
+    </div>
+    <div id="cartOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.5); display: none; z-index: 999;"></div>
+    <span class="cart-count" style="display: none;">0</span>
+    
+    <!-- Load main script -->
+    <script src="script.js?v=30"></script>
+    
+    <script>
+        const debugOutput = document.getElementById('debug-output');
+        
+        function debugLog(message, type = 'info') {
+            const time = new Date().toLocaleTimeString();
+            const colors = { info: '#4ade80', error: '#ef4444', warn: '#f59e0b' };
+            debugOutput.innerHTML += `<div style="color: ${colors[type]};">[${time}] ${message}</div>`;
+            debugOutput.scrollTop = debugOutput.scrollHeight;
+            console.log(message);
+        }
+        
+        function checkScriptLoading() {
+            const scriptStatus = document.getElementById('script-status');
+            try {
+                if (typeof initParticles === 'function') {
+                    scriptStatus.innerHTML = '<span class="success">✓ Script loaded successfully</span>';
+                    return true;
+                } else {
+                    scriptStatus.innerHTML = '<span class="error">✗ Script not loaded or functions not available</span>';
+                    return false;
+                }
+            } catch (e) {
+                scriptStatus.innerHTML = `<span class="error">✗ Error checking script: ${e.message}</span>`;
+                return false;
+            }
+        }
+        
+        function checkFunctions() {
+            const functionStatus = document.getElementById('function-status');
+            const functions = {
+                'addToCart': typeof window.addToCart,
+                'openCartSidebar': typeof window.openCartSidebar,
+                'closeCartSidebar': typeof window.closeCartSidebar,
+                'updateCartDisplay': typeof window.updateCartDisplay,
+                'cart variable': typeof window.cart
+            };
+            
+            let html = '';
+            for (const [name, type] of Object.entries(functions)) {
+                const isGood = type === 'function' || (name.includes('cart variable') && type === 'object');
+                html += `<div>${name}: <span class="${isGood ? 'success' : 'error'}">${type}</span></div>`;
+                debugLog(`${name}: ${type}`, isGood ? 'info' : 'error');
+            }
+            functionStatus.innerHTML = html;
+        }
+        
+        function checkDOMElements() {
+            const domStatus = document.getElementById('dom-status');
+            const elements = [
+                'cartSidebar', 'cartOverlay', 'cartItemsList', 
+                'cartEmpty', 'cart-subtotal', 'cart-tax', 'cart-shipping', 'cart-total'
+            ];
+            
+            let html = '';
+            elements.forEach(id => {
+                const element = document.getElementById(id) || document.querySelector('.' + id);
+                const exists = !!element;
+                html += `<div>${id}: <span class="${exists ? 'success' : 'error'}">${exists ? '✓ Found' : '✗ Missing'}</span></div>`;
+                debugLog(`DOM element ${id}: ${exists ? 'Found' : 'Missing'}`, exists ? 'info' : 'error');
+            });
+            domStatus.innerHTML = html;
+        }
+        
+        function manualTest() {
+            debugLog('=== Manual addToCart Test ===');
+            try {
+                if (typeof window.addToCart === 'function') {
+                    const result = window.addToCart('Test Product', 99.99, '5mg', 'test.jpg');
+                    debugLog(`addToCart returned: ${result}`, 'info');
+                    debugLog(`Cart length: ${window.cart ? window.cart.length : 'N/A'}`, 'info');
+                } else {
+                    debugLog('addToCart function not available!', 'error');
+                }
+            } catch (e) {
+                debugLog(`Error in addToCart: ${e.message}`, 'error');
+            }
+        }
+        
+        function testCartOpen() {
+            debugLog('=== Manual Cart Open Test ===');
+            try {
+                if (typeof window.openCartSidebar === 'function') {
+                    window.openCartSidebar();
+                    debugLog('openCartSidebar called successfully', 'info');
+                } else {
+                    debugLog('openCartSidebar function not available!', 'error');
+                }
+            } catch (e) {
+                debugLog(`Error opening cart: ${e.message}`, 'error');
+            }
+        }
+        
+        function closeCart() {
+            const cartSidebar = document.getElementById('cartSidebar');
+            if (cartSidebar) {
+                cartSidebar.style.right = '-300px';
+                debugLog('Cart closed manually', 'info');
+            }
+        }
+        
+        function showTestNotification() {
+            debugLog('=== Manual Notification Test ===');
+            try {
+                if (typeof window.showNotification === 'function') {
+                    window.showNotification('Test notification', 'success');
+                    debugLog('showNotification called successfully', 'info');
+                } else {
+                    debugLog('showNotification function not available!', 'error');
+                    // Create simple notification
+                    const notif = document.createElement('div');
+                    notif.style.cssText = 'position:fixed;top:20px;right:20px;background:#4ade80;color:white;padding:10px 20px;border-radius:5px;z-index:10000;';
+                    notif.textContent = 'Manual test notification';
+                    document.body.appendChild(notif);
+                    setTimeout(() => notif.remove(), 3000);
+                }
+            } catch (e) {
+                debugLog(`Error showing notification: ${e.message}`, 'error');
+            }
+        }
+        
+        // Run checks when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            debugLog('DOM Content Loaded', 'info');
+            setTimeout(() => {
+                checkScriptLoading();
+                checkFunctions(); 
+                checkDOMElements();
+            }, 500);
+        });
+        
+        // Also run checks after a delay to catch late-loading functions
+        setTimeout(() => {
+            debugLog('Running delayed checks...', 'info');
+            checkFunctions();
+        }, 2000);
+    </script>
+</body>
+</html>

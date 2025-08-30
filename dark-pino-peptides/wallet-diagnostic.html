@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Extension Diagnostic</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background: #4a5568;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #5a6578;
+        }
+        .success { color: #48bb78; }
+        .error { color: #f56565; }
+        .warning { color: #ed8936; }
+        .info { color: #4299e1; }
+        pre {
+            background: #2d3748;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .wallet-found {
+            background: #2f855a;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .wallet-not-found {
+            background: #742a2a;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wallet Extension Diagnostic Tool</h1>
+    
+    <button onclick="scanForWallets()">Scan for All Wallets</button>
+    <button onclick="waitAndScan()">Wait 3s Then Scan</button>
+    <button onclick="tryConnectPhantom()">Try Connect Phantom</button>
+    <button onclick="clearConsole()">Clear</button>
+    
+    <div id="output"></div>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        function log(msg, className = '') {
+            const div = document.createElement('div');
+            div.className = className;
+            div.innerHTML = msg;
+            output.appendChild(div);
+            console.log(msg.replace(/<[^>]*>/g, ''));
+        }
+        
+        function clearConsole() {
+            output.innerHTML = '';
+        }
+        
+        function scanForWallets() {
+            clearConsole();
+            log('<h2>Scanning for Wallet Extensions...</h2>');
+            
+            // Check for all known wallet properties
+            const walletChecks = {
+                // Phantom
+                'window.phantom': window.phantom,
+                'window.phantom?.solana': window.phantom?.solana,
+                'window.phantom?.solana?.isPhantom': window.phantom?.solana?.isPhantom,
+                'window.solana': window.solana,
+                'window.solana?.isPhantom': window.solana?.isPhantom,
+                
+                // Ethereum wallets
+                'window.ethereum': window.ethereum,
+                'window.ethereum?.isMetaMask': window.ethereum?.isMetaMask,
+                
+                // Other Solana wallets
+                'window.solflare': window.solflare,
+                'window.backpack': window.backpack,
+                'window.coin98': window.coin98,
+                'window.braveSolana': window.braveSolana,
+                'window.slope': window.slope,
+                'window.sollet': window.sollet,
+            };
+            
+            // Display results
+            Object.entries(walletChecks).forEach(([key, value]) => {
+                if (value) {
+                    log(`✅ ${key}: <span class="success">FOUND</span>`, 'wallet-found');
+                    if (typeof value === 'object') {
+                        try {
+                            log(`<pre>${JSON.stringify(Object.keys(value), null, 2)}</pre>`);
+                        } catch (e) {
+                            log(`<pre>Object with keys: ${Object.keys(value).slice(0, 5).join(', ')}...</pre>`);
+                        }
+                    }
+                } else {
+                    log(`❌ ${key}: <span class="error">NOT FOUND</span>`);
+                }
+            });
+            
+            // Check for wallet conflicts
+            log('<h3>Potential Conflicts:</h3>');
+            
+            if (window.ethereum && window.ethereum.providers) {
+                log(`⚠️ Multiple Ethereum providers detected: ${window.ethereum.providers.length} providers`, 'warning');
+            }
+            
+            // List all global properties that might be wallets
+            log('<h3>All window properties containing "wallet", "phantom", or "solana":</h3>');
+            const walletKeys = Object.keys(window).filter(key => 
+                key.toLowerCase().includes('wallet') || 
+                key.toLowerCase().includes('phantom') || 
+                key.toLowerCase().includes('solana') ||
+                key.toLowerCase().includes('ethereum')
+            );
+            log(`<pre>${walletKeys.join('\n')}</pre>`);
+            
+            // Try different Phantom access methods
+            log('<h3>Trying Alternative Phantom Access Methods:</h3>');
+            
+            // Method 1: Direct check
+            if (window.solana && !window.solana.isMetaMask) {
+                log('🔍 Found Solana object (might be Phantom)', 'info');
+            }
+            
+            // Method 2: Check providers array
+            if (window.ethereum?.providers) {
+                const phantomProvider = window.ethereum.providers.find(p => p.isPhantom);
+                if (phantomProvider) {
+                    log('🔍 Found Phantom in ethereum.providers array!', 'success');
+                }
+            }
+            
+            // Method 3: Check for injection after delay
+            log('<br>Recommendation: Try "Wait 3s Then Scan" button to allow time for wallet injection');
+        }
+        
+        function waitAndScan() {
+            clearConsole();
+            log('⏳ Waiting 3 seconds for wallet extensions to inject...', 'info');
+            
+            let countdown = 3;
+            const interval = setInterval(() => {
+                countdown--;
+                if (countdown > 0) {
+                    log(`⏳ ${countdown}...`, 'info');
+                } else {
+                    clearInterval(interval);
+                    log('✅ Wait complete. Scanning now...', 'success');
+                    setTimeout(scanForWallets, 100);
+                }
+            }, 1000);
+        }
+        
+        async function tryConnectPhantom() {
+            clearConsole();
+            log('<h2>Attempting Phantom Connection...</h2>');
+            
+            // Try multiple methods
+            const methods = [
+                () => window.phantom?.solana,
+                () => window.solana,
+                () => window.ethereum?.providers?.find(p => p.isPhantom),
+                () => {
+                    // Check if solana exists and is not MetaMask
+                    if (window.solana && !window.solana.isMetaMask) {
+                        return window.solana;
+                    }
+                    return null;
+                }
+            ];
+            
+            let provider = null;
+            for (let i = 0; i < methods.length; i++) {
+                log(`Trying method ${i + 1}...`);
+                provider = methods[i]();
+                if (provider) {
+                    log(`✅ Found provider with method ${i + 1}!`, 'success');
+                    break;
+                }
+            }
+            
+            if (!provider) {
+                log('❌ No Phantom provider found', 'error');
+                log('Possible solutions:', 'warning');
+                log('1. Make sure Phantom extension is installed', 'warning');
+                log('2. Try disabling other wallet extensions temporarily', 'warning');
+                log('3. Refresh the page and try again', 'warning');
+                log('4. Check Phantom extension settings', 'warning');
+                return;
+            }
+            
+            try {
+                log('📡 Calling provider.connect()...', 'info');
+                const response = await provider.connect();
+                log(`✅ SUCCESS! Connected to wallet:`, 'success');
+                log(`<pre>Public Key: ${response.publicKey.toString()}</pre>`, 'wallet-found');
+            } catch (error) {
+                log(`❌ Connection failed: ${error.message}`, 'error');
+                log(`<pre>${JSON.stringify(error, null, 2)}</pre>`);
+            }
+        }
+        
+        // Auto-scan on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                log('🔄 Auto-scan on page load...', 'info');
+                scanForWallets();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

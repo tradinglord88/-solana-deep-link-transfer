@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Dark Pino Peptides - Premium Research Peptides</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Creepster&family=Nosifer&family=Bungee+Shade&family=Bungee&family=Bowlby+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-bg"></div>
+        <canvas id="particles"></canvas>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo-animation">
+                    <img src="pepe-mascot.png" alt="Dark Pino Mascot" class="logo-mascot">
+                    <span class="logo-text">DARK PINO</span>
+                    <span class="logo-accent">PEPTIDES</span>
+                </div>
+                <span class="tagline">Next-Gen Research Chemistry</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">HOME</a></li>
+                <li><a href="#products" class="nav-link">PEPTIDES</a></li>
+                <li><a href="#bacteriostatic" class="nav-link">BACTERIOSTATIC WATER</a></li>
+                <li><a href="#skincare" class="nav-link">SKIN CARE</a></li>
+                <li><a href="#spray" class="nav-link">SPRAY</a></li>
+                <li><button id="wallet-connect-nav" class="cart-btn glow-btn" type="button">
+                    <span class="cart-text">Connect Wallet</span>
+                </button></li>
+                <li><a href="#cart" class="cart-btn glow-btn">
+                    <span class="cart-text">Cart</span>
+                    <span class="cart-count">0</span>
+                </a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <img src="hero-bg-peptide.jpg" alt="Peptide Molecular Structure" class="hero-bg-image">
+            <div class="hero-bg-overlay"></div>
+            <div class="hero-bg-gradient"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content-center">
+                <div class="hero-title-container">
+                    <h2 class="hero-title-large">
+                        <div class="title-text-wrapper">
+                            <span class="title-line">
+                                <span class="graffiti-text">DARK PINO</span>
+                            </span>
+                            <span class="title-line">
+                                <span class="text-fill">PEPTIDES</span>
+                            </span>
+                        </div>
+                    </h2>
+                </div>
+                <img src="dark-pino-mascot.png" alt="Dark Pino Mascot" class="hero-mascot-center" style="height: 350px !important; width: auto !important; margin: 10px auto !important; display: block !important;">
+                <div class="hero-scroll-indicator" style="position: relative !important; bottom: auto !important; margin: 20px auto 0 !important; left: auto !important; transform: none !important; text-align: center !important;">
+                    <span>Scroll to explore</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-small">Explore Our</span>
+                <span class="title-main gradient-text">Premium Catalog</span>
+            </h2>
+            <div class="product-categories">
+                <button class="category-btn active glass-pill" data-category="all">
+                    <span class="category-icon">✨</span>
+                    All Products
+                </button>
+                <button class="category-btn glass-pill" data-category="growth">
+                    <span class="category-icon">🧬</span>
+                    Growth Factors
+                </button>
+                <button class="category-btn glass-pill" data-category="research">
+                    <span class="category-icon">🔬</span>
+                    Research
+                </button>
+                <button class="category-btn glass-pill" data-category="metabolic">
+                    <span class="category-icon">⚗️</span>
+                    Metabolic
+                </button>
+            </div>
+            <div class="product-grid">
+                <!-- BPC-157 -->
+                <div class="product-card glass-morph" data-category="growth">
+                    <div class="product-badge pulse">🔥 Best Seller</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/bpc-157-5mg.png" alt="BPC-157 5mg" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">BPC-157</h3>
+                    <p class="product-desc">Body Protection Compound - Promotes healing of muscles, tendons, and ligaments. Supports gut health and reduces inflammation.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Tissue Repair</span>
+                        <span class="benefit-tag">Gut Health</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">5mg</span>
+                        <span class="spec-badge">99.9% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$89.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('BPC-157', 89.99, '5mg', 'images/bpc-157-5mg.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- TB-500 -->
+                <div class="product-card glass-morph" data-category="growth">
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="TB-500" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">TB-500</h3>
+                    <p class="product-desc">Thymosin Beta-4 - Accelerates wound healing, reduces inflammation, and improves flexibility. Supports cardiovascular health.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Recovery</span>
+                        <span class="benefit-tag">Flexibility</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">5mg</span>
+                        <span class="spec-badge">99.5% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$94.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('TB-500', 94.99, '5mg', 'images/tb-500.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- GHK-Cu -->
+                <div class="product-card glass-morph" data-category="research">
+                    <div class="product-badge pulse">⭐ Premium</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">GHK-Cu</h3>
+                    <p class="product-desc">Copper Peptide - Powerful anti-aging properties, stimulates collagen production, improves skin elasticity and hair growth.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Anti-Aging</span>
+                        <span class="benefit-tag">Skin Health</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">50mg</span>
+                        <span class="spec-badge">99.1% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$129.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('GHK-Cu', 129.99, '50mg', 'images/tb-500.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- Semaglutide -->
+                <div class="product-card glass-morph" data-category="metabolic">
+                    <div class="product-badge pulse">🎯 Trending</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Semaglutide</h3>
+                    <p class="product-desc">GLP-1 Agonist - Supports weight management, improves blood sugar control, reduces appetite and cardiovascular risk.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Weight Loss</span>
+                        <span class="benefit-tag">Metabolic</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">3mg</span>
+                        <span class="spec-badge">99.8% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$299.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart(this.closest('.product-card').querySelector('.product-name').textContent, parseFloat(this.closest('.product-card').querySelector('.product-price').textContent.replace('$','')), this.closest('.product-card').querySelector('.spec-badge').textContent, 'images/tb-500.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- Tirzepatide -->
+                <div class="product-card glass-morph" data-category="metabolic">
+                    <div class="product-badge pulse">✨ New</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Tirzepatide</h3>
+                    <p class="product-desc">Dual GIP/GLP-1 Agonist - Advanced metabolic support, significant weight reduction, improved insulin sensitivity.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Weight Loss</span>
+                        <span class="benefit-tag">Diabetes</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">5mg</span>
+                        <span class="spec-badge">99.7% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$349.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart(this.closest('.product-card').querySelector('.product-name').textContent, parseFloat(this.closest('.product-card').querySelector('.product-price').textContent.replace('$','')), this.closest('.product-card').querySelector('.spec-badge').textContent, 'images/tb-500.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- CJC-1295 -->
+                <div class="product-card glass-morph" data-category="growth">
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">CJC-1295</h3>
+                    <p class="product-desc">Growth Hormone Releasing Hormone - Increases growth hormone production, improves sleep quality, enhances fat loss.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">GH Release</span>
+                        <span class="benefit-tag">Sleep</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">2mg</span>
+                        <span class="spec-badge">99.6% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$69.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart(this.closest('.product-card').querySelector('.product-name').textContent, parseFloat(this.closest('.product-card').querySelector('.product-price').textContent.replace('$','')), this.closest('.product-card').querySelector('.spec-badge').textContent, 'images/tb-500.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- Ipamorelin -->
+                <div class="product-card glass-morph" data-category="growth">
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Ipamorelin</h3>
+                    <p class="product-desc">Selective GH Secretagogue - Stimulates natural growth hormone release, improves bone density, enhances recovery.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">GH Release</span>
+                        <span class="benefit-tag">Recovery</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">5mg</span>
+                        <span class="spec-badge">99.5% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$59.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart(this.closest('.product-card').querySelector('.product-name').textContent, parseFloat(this.closest('.product-card').querySelector('.product-price').textContent.replace('$','')), this.closest('.product-card').querySelector('.spec-badge').textContent, 'images/tb-500.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- Melanotan II -->
+                <div class="product-card glass-morph" data-category="research">
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Melanotan II</h3>
+                    <p class="product-desc">Melanocortin Agonist - Promotes skin tanning, may support libido, potential appetite suppression.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Tanning</span>
+                        <span class="benefit-tag">Libido</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">10mg</span>
+                        <span class="spec-badge">99.3% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$49.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart(this.closest('.product-card').querySelector('.product-name').textContent, parseFloat(this.closest('.product-card').querySelector('.product-price').textContent.replace('$','')), this.closest('.product-card').querySelector('.spec-badge').textContent, 'images/tb-500.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- PT-141 -->
+                <div class="product-card glass-morph" data-category="research">
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">PT-141</h3>
+                    <p class="product-desc">Bremelanotide - Enhances libido and sexual function, works through nervous system rather than vascular system.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Libido</span>
+                        <span class="benefit-tag">Sexual Health</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">10mg</span>
+                        <span class="spec-badge">99.4% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$69.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart(this.closest('.product-card').querySelector('.product-name').textContent, parseFloat(this.closest('.product-card').querySelector('.product-price').textContent.replace('$','')), this.closest('.product-card').querySelector('.spec-badge').textContent, 'images/tb-500.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- Selank -->
+                <div class="product-card glass-morph" data-category="research">
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Selank</h3>
+                    <p class="product-desc">Anxiolytic Peptide - Reduces anxiety and stress, improves cognitive function, enhances immune system.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Anti-Anxiety</span>
+                        <span class="benefit-tag">Cognitive</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">10mg</span>
+                        <span class="spec-badge">99.4% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$84.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart(this.closest('.product-card').querySelector('.product-name').textContent, parseFloat(this.closest('.product-card').querySelector('.product-price').textContent.replace('$','')), this.closest('.product-card').querySelector('.spec-badge').textContent, 'images/tb-500.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- Semax -->
+                <div class="product-card glass-morph" data-category="research">
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Semax</h3>
+                    <p class="product-desc">Nootropic Peptide - Enhances cognitive performance, improves memory and focus, neuroprotective properties.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Nootropic</span>
+                        <span class="benefit-tag">Focus</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">30mg</span>
+                        <span class="spec-badge">99.5% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$99.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart(this.closest('.product-card').querySelector('.product-name').textContent, parseFloat(this.closest('.product-card').querySelector('.product-price').textContent.replace('$','')), this.closest('.product-card').querySelector('.spec-badge').textContent, 'images/tb-500.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- DSIP -->
+                <div class="product-card glass-morph" data-category="research">
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">DSIP</h3>
+                    <p class="product-desc">Delta Sleep-Inducing Peptide - Promotes deep restorative sleep, reduces stress, normalizes blood pressure.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Sleep</span>
+                        <span class="benefit-tag">Stress Relief</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">5mg</span>
+                        <span class="spec-badge">99.2% Pure</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$54.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart(this.closest('.product-card').querySelector('.product-name').textContent, parseFloat(this.closest('.product-card').querySelector('.product-price').textContent.replace('$','')), this.closest('.product-card').querySelector('.spec-badge').textContent, 'images/tb-500.png')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-small">Why Choose</span>
+                <span class="title-main graffiti-text">DARK PINO</span>
+                <span class="title-tagline">Pioneering the Future of Biochemical Research with Ultra-Pure Compounds</span>
+            </h2>
+            <div class="features-center-layout">
+                <!-- Advanced Amino Acid Background -->
+                <svg class="amino-background" viewBox="0 0 1200 600">
+                    <defs>
+                        <linearGradient id="peptideGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.8" />
+                            <stop offset="50%" style="stop-color:#FFA500;stop-opacity:0.6" />
+                            <stop offset="100%" style="stop-color:#FF6B00;stop-opacity:0.8" />
+                        </linearGradient>
+                        <linearGradient id="peptideGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.8" />
+                        </linearGradient>
+                        <filter id="moleculeGlow">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Complex Peptide Chain 1 - Top Left -->
+                    <g class="peptide-chain chain-tl">
+                        <path d="M 50 50 Q 100 30, 150 50 T 250 50" stroke="url(#peptideGrad1)" stroke-width="3" fill="none" opacity="0.6"/>
+                        <circle cx="50" cy="50" r="6" fill="#FFD700" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="100" cy="35" r="8" fill="#FFA500" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="8;10;8" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="150" cy="50" r="7" fill="#FF8C00" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="7;9;7" dur="2s" begin="1s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="200" cy="35" r="6" fill="#FFD700" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="6;8;6" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="250" cy="50" r="8" fill="#FFA500" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="8;10;8" dur="2s" begin="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <text x="150" y="20" class="formula-text">Gly-Ala-Val</text>
+                    </g>
+                    
+                    <!-- Complex Peptide Chain 2 - Top Right -->
+                    <g class="peptide-chain chain-tr">
+                        <path d="M 950 50 Q 1000 70, 1050 50 T 1150 50" stroke="url(#peptideGrad2)" stroke-width="3" fill="none" opacity="0.6"/>
+                        <circle cx="950" cy="50" r="7" fill="#8b5cf6" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="7;9;7" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="1000" cy="65" r="9" fill="#ec4899" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="9;11;9" dur="2.5s" begin="0.6s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="1050" cy="50" r="6" fill="#06b6d4" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="6;8;6" dur="2.5s" begin="1.2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="1100" cy="65" r="8" fill="#8b5cf6" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="8;10;8" dur="2.5s" begin="1.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="1150" cy="50" r="7" fill="#ec4899" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="7;9;7" dur="2.5s" begin="2.4s" repeatCount="indefinite"/>
+                        </circle>
+                        <text x="1050" y="20" class="formula-text">Leu-Pro-Phe</text>
+                    </g>
+                    
+                    <!-- Complex Peptide Chain 3 - Bottom Left -->
+                    <g class="peptide-chain chain-bl">
+                        <path d="M 50 550 Q 100 530, 150 550 T 250 550" stroke="url(#peptideGrad2)" stroke-width="3" fill="none" opacity="0.6"/>
+                        <circle cx="50" cy="550" r="8" fill="#06b6d4" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="8;10;8" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="100" cy="535" r="6" fill="#8b5cf6" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="6;8;6" dur="3s" begin="0.7s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="150" cy="550" r="9" fill="#ec4899" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="9;11;9" dur="3s" begin="1.4s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="200" cy="535" r="7" fill="#06b6d4" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="7;9;7" dur="3s" begin="2.1s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="250" cy="550" r="8" fill="#8b5cf6" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="8;10;8" dur="3s" begin="2.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <text x="150" y="580" class="formula-text">Ser-Tyr-Met</text>
+                    </g>
+                    
+                    <!-- Complex Peptide Chain 4 - Bottom Right -->
+                    <g class="peptide-chain chain-br">
+                        <path d="M 950 550 Q 1000 570, 1050 550 T 1150 550" stroke="url(#peptideGrad1)" stroke-width="3" fill="none" opacity="0.6"/>
+                        <circle cx="950" cy="550" r="7" fill="#FFD700" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="7;9;7" dur="2.2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="1000" cy="565" r="8" fill="#FFA500" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="8;10;8" dur="2.2s" begin="0.4s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="1050" cy="550" r="6" fill="#FF8C00" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="6;8;6" dur="2.2s" begin="0.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="1100" cy="565" r="9" fill="#FFD700" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="9;11;9" dur="2.2s" begin="1.2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="1150" cy="550" r="7" fill="#FFA500" filter="url(#moleculeGlow)">
+                            <animate attributeName="r" values="7;9;7" dur="2.2s" begin="1.6s" repeatCount="indefinite"/>
+                        </circle>
+                        <text x="1050" y="580" class="formula-text">Arg-Lys-His</text>
+                    </g>
+                    
+                    <!-- Floating Chemical Formulas -->
+                    <g class="floating-formulas">
+                        <text x="300" y="150" class="formula-float" opacity="0.5">C₅H₉NO₄</text>
+                        <text x="900" y="150" class="formula-float" opacity="0.5">C₆H₁₃N₃O₂</text>
+                        <text x="300" y="450" class="formula-float" opacity="0.5">C₄H₇NO₂S</text>
+                        <text x="900" y="450" class="formula-float" opacity="0.5">C₉H₁₁NO₃</text>
+                    </g>
+                </svg>
+                
+                <!-- Left Side Features -->
+                <div class="features-left">
+                    <div class="feature-box compact-box">
+                        <div class="box-icon">99.9%</div>
+                        <h4>Ultimate Purity</h4>
+                        <p>Lab-verified compounds</p>
+                    </div>
+                    <div class="feature-box compact-box">
+                        <div class="box-icon">24H</div>
+                        <h4>Lightning Fast</h4>
+                        <p>Express worldwide shipping</p>
+                    </div>
+                </div>
+                
+                <!-- Central Mascot -->
+                <div class="features-center-mascot">
+                    <!-- Light Rays -->
+                    <div class="light-rays">
+                        <div class="ray ray-1"></div>
+                        <div class="ray ray-2"></div>
+                        <div class="ray ray-3"></div>
+                        <div class="ray ray-4"></div>
+                        <div class="ray ray-5"></div>
+                        <div class="ray ray-6"></div>
+                        <div class="ray ray-7"></div>
+                        <div class="ray ray-8"></div>
+                    </div>
+                    <div class="aura-ring"></div>
+                    <div class="aura-ring-2"></div>
+                    <div class="aura-ring-3"></div>
+                    <img src="dark-pino-mascot.png" alt="Dark Pino" class="features-mascot floating" style="width: 350px; height: 350px; object-fit: contain; display: block; position: relative; z-index: 10;">
+                    <div class="mascot-glow"></div>
+                </div>
+                
+                <!-- Right Side Features -->
+                <div class="features-right">
+                    <div class="feature-box compact-box">
+                        <div class="box-icon">-80°C</div>
+                        <h4>Cryo Storage</h4>
+                        <p>Molecular preservation</p>
+                    </div>
+                    <div class="feature-box compact-box">
+                        <div class="box-icon">LAB</div>
+                        <h4>Full Analytics</h4>
+                        <p>HPLC & MS verified</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bacteriostatic Water Section -->
+    <section id="bacteriostatic" class="products">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-small">Medical Grade</span>
+                <span class="title-main gradient-text">BACTERIOSTATIC WATER</span>
+            </h2>
+            <div class="product-grid">
+                <!-- 10ml Bacteriostatic Water -->
+                <div class="product-card glass-morph" data-category="water">
+                    <div class="product-badge">USP GRADE</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/bacteriostatic-water.avif" alt="Bacteriostatic Water" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Bacteriostatic Water 10ml</h3>
+                    <p class="product-desc">Medical grade sterile water with 0.9% benzyl alcohol preservative. Essential for peptide reconstitution.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">USP Grade</span>
+                        <span class="benefit-tag">Sterile</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">10ml</span>
+                        <span class="spec-badge">0.9% BA</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$14.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('Bacteriostatic Water 10ml', 14.99, '10ml', 'images/bacteriostatic-water.avif')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- 30ml Bacteriostatic Water -->
+                <div class="product-card glass-morph" data-category="water">
+                    <div class="product-badge pulse">🔥 Most Popular</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/bacteriostatic-water.avif" alt="Bacteriostatic Water 30ml" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Bacteriostatic Water 30ml</h3>
+                    <p class="product-desc">Our most popular size. Perfect for multiple reconstitutions. Maintains sterility for extended use.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Best Seller</span>
+                        <span class="benefit-tag">Multi-Use</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">30ml</span>
+                        <span class="spec-badge">0.9% BA</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$24.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('Bacteriostatic Water 30ml', 24.99, '30ml', 'images/bacteriostatic-water.avif')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- 100ml Bacteriostatic Water -->
+                <div class="product-card glass-morph" data-category="water">
+                    <div class="product-badge">💎 Best Value</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/bacteriostatic-water.avif" alt="Bacteriostatic Water 100ml" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Bacteriostatic Water 100ml</h3>
+                    <p class="product-desc">Maximum value for research facilities and frequent users. Long-lasting supply with optimal preservation.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Bulk Size</span>
+                        <span class="benefit-tag">Lab Grade</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">100ml</span>
+                        <span class="spec-badge">0.9% BA</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$49.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('Bacteriostatic Water 100ml', 49.99, '100ml', 'images/bacteriostatic-water.avif')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+                    <div class="product-badge">⭐ ANTI-AGING</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">GHK-Cu Copper Peptide Serum</h3>
+                    <p class="product-desc">Revolutionary anti-aging serum with 1% copper peptides. Stimulates collagen production and reduces fine lines.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Collagen Boost</span>
+                        <span class="benefit-tag">Anti-Wrinkle</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">1% Concentration</span>
+                        <span class="spec-badge">30ml</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$89.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('GHK-Cu Copper Peptide Serum', 89.99, '30ml', 'https://via.placeholder.com/300x200')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- Melanotan Face Cream -->
+                <div class="product-card glass-morph" data-category="skincare">
+                    <div class="product-badge">☀️ BRIGHTENING</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Melanotan Face Cream</h3>
+                    <p class="product-desc">Advanced brightening formula for even skin tone. Reduces dark spots and enhances natural glow.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Skin Brightening</span>
+                        <span class="benefit-tag">Even Tone</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">Advanced Formula</span>
+                        <span class="spec-badge">50ml</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$74.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('Melanotan Face Cream', 74.99, '50ml', 'https://via.placeholder.com/300x200')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- BPC-157 Healing Gel -->
+                <div class="product-card glass-morph" data-category="skincare">
+                    <div class="product-badge pulse">🔬 REPAIR</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">BPC-157 Healing Gel</h3>
+                    <p class="product-desc">Fast-acting recovery gel for damaged skin. Accelerates wound healing and reduces scarring.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Fast Recovery</span>
+                        <span class="benefit-tag">Scar Reduction</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">Clinical Strength</span>
+                        <span class="spec-badge">50ml</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$119.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('BPC-157 Healing Gel', 119.99, '50ml', 'https://via.placeholder.com/300x200')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nasal Sprays Section -->
+    <section id="spray" class="products">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-small">Convenient Delivery</span>
+                <span class="title-main gradient-text">NASAL SPRAYS</span>
+            </h2>
+            <div class="product-grid">
+                <!-- Semax Nasal Spray -->
+                <div class="product-card glass-morph" data-category="spray">
+                    <div class="product-badge">🧠 COGNITIVE</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Semax Nasal Spray</h3>
+                    <p class="product-desc">Nootropic peptide spray for enhanced cognitive function. Improves memory, focus, and mental clarity.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Brain Boost</span>
+                        <span class="benefit-tag">Focus</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">0.1% Solution</span>
+                        <span class="spec-badge">10ml</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$64.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('Semax Nasal Spray', 64.99, '10ml', 'https://via.placeholder.com/300x200')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- Thymosin Alpha-1 Spray -->
+                <div class="product-card glass-morph" data-category="spray">
+                    <div class="product-badge">🛡️ IMMUNE BOOST</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">Thymosin Alpha-1 Spray</h3>
+                    <p class="product-desc">Powerful immune system modulator. Enhances T-cell function and strengthens immune response.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Immunity</span>
+                        <span class="benefit-tag">Protection</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">200mcg/spray</span>
+                        <span class="spec-badge">10ml</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$94.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('Thymosin Alpha-1 Spray', 94.99, '10ml', 'https://via.placeholder.com/300x200')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- BPC-157 Nasal Spray -->
+                <div class="product-card glass-morph" data-category="spray">
+                    <div class="product-badge pulse">💪 RECOVERY</div>
+                    <div class="product-image" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="images/tb-500.png" alt="Peptide" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                    </div>
+                    <h3 class="product-name">BPC-157 Nasal Spray</h3>
+                    <p class="product-desc">Fast-absorbing recovery peptide. Supports systemic healing and reduces inflammation.</p>
+                    <div class="product-benefits">
+                        <span class="benefit-tag">Fast Absorption</span>
+                        <span class="benefit-tag">Healing</span>
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-badge">250mcg/spray</span>
+                        <span class="spec-badge">10ml</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-label">Price</span>
+                        <div class="product-price glow-text">$84.99</div>
+                    </div>
+                    <button class="btn-add-cart magnetic-btn" onclick="addToCart('BPC-157 Nasal Spray', 84.99, '10ml', 'https://via.placeholder.com/300x200')">
+                        <span class="btn-text">Add to Cart</span>
+                        <span class="btn-icon">+</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Research Section -->
+    <section id="research" class="research">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-small">Knowledge Hub</span>
+                <span class="title-main gradient-text">Research Center</span>
+            </h2>
+            <div class="research-grid">
+                <article class="research-card glass-morph hover-lift">
+                    <div class="card-gradient"></div>
+                    <div class="research-icon floating">
+                        <span>🧊</span>
+                    </div>
+                    <h3 class="gradient-text">Peptide Stability</h3>
+                    <p>Master the art of peptide preservation with our comprehensive storage protocols and handling guidelines.</p>
+                    <div class="research-meta">
+                        <span class="meta-item">📖 5 min read</span>
+                        <span class="meta-item">⭐ Essential</span>
+                    </div>
+                    <a href="#" class="modern-link">
+                        <span>Explore Guide</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                </article>
+                <article class="research-card glass-morph hover-lift">
+                    <div class="card-gradient"></div>
+                    <div class="research-icon floating" style="animation-delay: 0.2s">
+                        <span>💧</span>
+                    </div>
+                    <h3 class="gradient-text">Reconstitution Pro</h3>
+                    <p>Advanced techniques for optimal peptide reconstitution, ensuring maximum bioactivity and research accuracy.</p>
+                    <div class="research-meta">
+                        <span class="meta-item">📖 8 min read</span>
+                        <span class="meta-item">🔬 Technical</span>
+                    </div>
+                    <a href="#" class="modern-link">
+                        <span>Learn More</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                </article>
+                <article class="research-card glass-morph hover-lift">
+                    <div class="card-gradient"></div>
+                    <div class="research-icon floating" style="animation-delay: 0.4s">
+                        <span>🎯</span>
+                    </div>
+                    <h3 class="gradient-text">Quality Protocols</h3>
+                    <p>Deep dive into our rigorous testing standards and quality assurance measures that set industry benchmarks.</p>
+                    <div class="research-meta">
+                        <span class="meta-item">📖 10 min read</span>
+                        <span class="meta-item">📊 Data-Rich</span>
+                    </div>
+                    <a href="#" class="modern-link">
+                        <span>View Details</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                </article>
+            </div>
+            <div class="research-cta">
+                <p class="cta-text">Access our complete research library</p>
+                <button class="btn btn-glow">
+                    <span>View All Resources</span>
+                    <span class="btn-sparkle">✨</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-gradient"></div>
+        </div>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h2 class="footer-logo gradient-text">DARK PINO PEPTIDES</h2>
+                    <p class="footer-tagline">Pioneering Tomorrow's Research Today</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link glass-morph">
+                            <span>𝕏</span>
+                        </a>
+                        <a href="#" class="social-link glass-morph">
+                            <span>in</span>
+                        </a>
+                        <a href="#" class="social-link glass-morph">
+                            <span>📧</span>
+                        </a>
+                        <a href="#" class="social-link glass-morph">
+                            <span>📚</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="column-title">Products</h4>
+                        <ul>
+                            <li><a href="#" class="footer-link">Growth Factors</a></li>
+                            <li><a href="#" class="footer-link">Research Compounds</a></li>
+                            <li><a href="#" class="footer-link">Metabolic Peptides</a></li>
+                            <li><a href="#" class="footer-link">New Arrivals</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="column-title">Resources</h4>
+                        <ul>
+                            <li><a href="#" class="footer-link">Research Library</a></li>
+                            <li><a href="#" class="footer-link">Technical Guides</a></li>
+                            <li><a href="#" class="footer-link">COA Database</a></li>
+                            <li><a href="#" class="footer-link">FAQ Center</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="column-title">Company</h4>
+                        <ul>
+                            <li><a href="#" class="footer-link">About Us</a></li>
+                            <li><a href="#" class="footer-link">Careers</a></li>
+                            <li><a href="#" class="footer-link">Partners</a></li>
+                            <li><a href="#" class="footer-link">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <div class="newsletter-card glass-morph">
+                        <h4 class="gradient-text">Stay Updated</h4>
+                        <p>Get the latest research insights and exclusive offers</p>
+                        <form class="newsletter-form modern-newsletter">
+                            <div class="input-wrapper">
+                                <input type="email" placeholder="Enter your email" required>
+                                <button type="submit" class="newsletter-btn">
+                                    <span>→</span>
+                                </button>
+                            </div>
+                        </form>
+                        <div class="newsletter-features">
+                            <span class="feature-tag">✓ Weekly Updates</span>
+                            <span class="feature-tag">✓ Exclusive Offers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <p>&copy; 2024 Dark Pino Peptides. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="#">Privacy</a>
+                        <span class="separator">•</span>
+                        <a href="#">Disclaimer</a>
+                    </div>
+                </div>
+                <div class="footer-badges">
+                    <span class="trust-badge glass-morph">🔒 SSL Secured</span>
+                    <span class="trust-badge glass-morph">✓ ISO Certified</span>
+                    <span class="trust-badge glass-morph">🏆 Trusted</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-wave">
+            <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+                <path d="M0,40 C150,80 350,0 600,40 C850,80 1050,0 1300,40 L1440,40 L1440,100 L0,100 Z" fill="url(#wave-gradient)"></path>
+                <defs>
+                    <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.3" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </footer>
+
+    <!-- Wallet Connect Modal -->
+    <div id="walletModal" class="modal">
+        <div class="modal-content wallet-modal-content">
+            <span class="close-wallet-modal">&times;</span>
+            <h2 class="wallet-modal-title">Connect Your Wallet</h2>
+            <p class="wallet-modal-subtitle">Choose your preferred wallet to connect</p>
+            
+            <div class="wallet-options">
+                <button class="wallet-option-btn" id="connect-phantom-btn">
+                    <div class="wallet-logo phantom-logo">
+                        <svg width="40" height="40" viewBox="0 0 128 128" fill="none">
+                            <rect width="128" height="128" rx="26" fill="url(#phantom-gradient2)"/>
+                            <defs>
+                                <linearGradient id="phantom-gradient2" x1="0" y1="0" x2="128" y2="128">
+                                    <stop offset="0%" stop-color="#534BB1"/>
+                                    <stop offset="100%" stop-color="#551BF9"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M116.922 68.9228C116.596 63.9346 115.547 59.4761 113.286 54.6513C110.942 49.6424 107.425 45.5042 102.819 42.1027C94.6803 35.5647 84.0221 33.4002 72.2379 36.3377C60.616 39.233 50.7753 46.7263 44.6205 57.4474C38.7789 67.6058 37.5566 79.0443 41.1642 90.2015C42.7413 95.2695 45.2823 99.5625 48.584 103.371C49.1707 104.019 49.8803 104.709 51.1354 104.342C52.1021 104.057 52.6195 103.123 52.9073 102.197C53.7518 99.5149 53.5916 96.8009 53.0627 94.0476C52.501 91.1182 51.6754 88.2207 51.1925 85.2677C50.3805 80.5606 50.7171 76.0138 52.4876 71.7155C54.1109 67.7857 56.7443 64.4582 60.5768 62.2304C63.6577 60.4356 67.1446 59.9455 70.5415 60.1693C73.0206 60.3216 75.411 60.9716 77.5217 62.3348C82.5468 65.5617 84.5021 72.2613 82.0452 78.5925C81.4382 80.0466 80.6223 81.4058 79.7653 82.7175C78.9899 83.9085 78.1494 85.0521 77.333 86.2116C74.9027 89.6606 72.4723 93.1175 69.9926 96.5349C69.9193 96.6317 69.8377 96.7285 69.7725 96.8253C69.4768 97.2822 69.4932 97.6983 69.8949 98.0033C72.8297 100.226 76.1706 101.388 79.8235 101.523C83.1479 101.642 86.2552 100.79 89.0423 98.9965C92.2842 96.9221 94.8283 94.1523 96.4217 90.5065C99.3223 83.893 98.8867 77.2003 95.6441 70.7465C93.924 67.3688 91.4324 64.6886 88.4723 62.3824C88.2798 62.2222 88.0627 62.0858 87.8456 61.9494C87.6858 61.8526 87.4687 61.8129 87.341 61.6369C87.2019 61.6369 87.0629 61.6369 86.9239 61.6369C86.7847 61.5876 86.6617 61.6923 86.6126 61.8288C86.547 62.0222 86.6454 62.1746 86.7356 62.3191C86.9976 62.7509 87.3327 63.1274 87.6284 63.5355C90.618 67.7541 92.0544 72.5424 91.5942 77.817C91.1912 82.486 89.3845 86.4673 86.0491 89.719C85.5153 90.2728 84.9324 90.7774 84.3331 91.2662C84.0619 91.4977 83.8069 91.5055 83.5358 91.2662C83.0347 90.8267 82.5254 90.403 82.0407 89.9556C81.1826 89.1556 80.3573 88.3239 79.4915 87.5257C78.7728 86.8559 78.3587 86.0732 78.4811 85.0838C78.5464 84.5458 78.636 84.0314 78.905 83.5802C79.2966 82.9214 79.6145 82.2152 79.9405 81.5247C81.6102 77.9536 81.5121 74.3824 79.7725 71.0192C77.5135 66.7106 73.616 64.5144 68.7984 64.8906C65.7912 65.1223 63.1656 66.318 61.0819 68.4749C58.3505 71.3084 57.1445 74.8076 57.3534 78.7149C57.4924 81.356 58.1973 83.8844 58.9607 86.3873C59.814 89.1852 60.6673 91.9832 60.9877 94.9098C61.2506 97.3516 61.0737 99.7441 60.3594 102.089C60.1587 102.737 59.9089 103.378 59.7945 104.042C59.6881 104.649 59.9007 105.041 60.4657 105.208C60.9325 105.343 61.3666 105.184 61.7562 104.927C67.9458 100.894 74.1436 96.8872 80.3249 92.8387C80.5175 92.702 80.7264 92.581 80.9107 92.4362C81.3249 92.1075 81.8454 92.1233 82.2677 92.4599C83.5194 93.4371 84.7547 94.4459 86.0818 95.3106C89.3436 97.4642 92.9993 98.4122 96.8886 97.9949C102.471 97.3832 107.154 95.0295 110.726 90.7856C113.588 87.3892 115.377 83.4627 116.209 79.0522C116.495 77.5694 116.633 76.0631 116.788 74.5647C116.845 74.0507 116.878 73.5288 116.919 73.0148C116.927 72.9575 116.943 72.9081 116.951 72.8508C117.123 71.5395 117.024 70.2361 116.922 68.9228ZM77.8338 76.2692C77.1441 76.2692 76.5871 75.7075 76.5871 75.0102C76.5871 74.3128 77.1441 73.7511 77.8338 73.7511C78.5234 73.7511 79.0805 74.3128 79.0805 75.0102C79.0805 75.7075 78.5234 76.2692 77.8338 76.2692ZM69.3707 76.2692C68.681 76.2692 68.124 75.7075 68.124 75.0102C68.124 74.3128 68.681 73.7511 69.3707 73.7511C70.0603 73.7511 70.6173 74.3128 70.6173 75.0102C70.6173 75.7075 70.0603 76.2692 69.3707 76.2692Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="wallet-info">
+                        <h3>Phantom</h3>
+                        <p>Connect using Phantom wallet</p>
+                    </div>
+                    <span class="wallet-badge">Solana</span>
+                </button>
+                
+                <button class="wallet-option-btn" id="connect-metamask-btn">
+                    <div class="wallet-logo metamask-logo">
+                        <svg width="40" height="40" viewBox="0 0 318.6 318.6">
+                            <style>.st0{fill:#E2761B;}.st1{fill:#E4761B;}.st2{fill:#D7C1B3;}.st3{fill:#233447;}.st4{fill:#CD6116;}.st5{fill:#E4751F;}.st6{fill:#F6851B;}.st7{fill:#C0AD9E;}.st8{fill:#161616;}.st9{fill:#763D16;}</style>
+                            <polygon class="st0" points="274.1,35.5 174.6,109.4 193,65.8"/>
+                            <polygon class="st1" points="44.4,35.5 143.1,110.1 125.6,65.8"/>
+                            <polygon class="st1" points="238.3,206.8 211.8,247.4 268.5,263 284.8,207.7"/>
+                            <polygon class="st1" points="33.9,207.7 50.1,263 106.8,247.4 80.3,206.8"/>
+                            <polygon class="st1" points="103.6,138.2 87.8,162.1 144.1,164.6 142.1,104.1"/>
+                            <polygon class="st1" points="214.9,138.2 175.9,103.4 174.6,164.6 230.8,162.1"/>
+                            <polygon class="st1" points="106.8,247.4 140.6,230.9 111.4,208.1"/>
+                            <polygon class="st1" points="177.9,230.9 211.8,247.4 207.1,208.1"/>
+                        </svg>
+                    </div>
+                    <div class="wallet-info">
+                        <h3>MetaMask</h3>
+                        <p>Connect using MetaMask wallet</p>
+                    </div>
+                    <span class="wallet-badge">Ethereum</span>
+                </button>
+            </div>
+            
+            <div class="wallet-status-container" id="wallet-status-container" style="display: none;">
+                <div class="connected-wallet">
+                    <span class="status-dot"></span>
+                    <p class="wallet-address-display" id="wallet-address-display"></p>
+                    <button class="disconnect-btn" id="disconnect-wallet">Disconnect</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-sidebar-wrapper">
+            <div class="cart-sidebar-header">
+                <h2>Shopping Cart</h2>
+                <button class="cart-close-btn" id="closeCart">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="cart-sidebar-content">
+            <div class="cart-items-list" id="cartItemsList">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+            
+            <div class="cart-empty" id="cartEmpty" style="display: none;">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <p>Your cart is empty</p>
+                <button class="btn btn-primary" onclick="document.getElementById('cartSidebar').classList.remove('active')">Continue Shopping</button>
+            </div>
+        </div>
+        
+        <div class="cart-sidebar-footer">
+            <div class="cart-summary">
+                <div class="cart-summary-row">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="cart-summary-row">
+                    <span>Tax</span>
+                    <span id="cart-tax">$0.00</span>
+                </div>
+                <div class="cart-summary-row">
+                    <span>Shipping</span>
+                    <span id="cart-shipping">$9.99</span>
+                </div>
+                <div class="cart-summary-row cart-total-row">
+                    <strong>Total</strong>
+                    <strong id="cart-total">$0.00</strong>
+                </div>
+            </div>
+            
+            <!-- Shipping Information Form -->
+            <div class="shipping-section" id="shippingSection">
+                <h3>Shipping Information</h3>
+                <form id="shippingForm" class="shipping-form">
+                    <div class="form-row">
+                        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="email" id="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="address" name="address" placeholder="Street Address" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="city" name="city" placeholder="City" required>
+                        <input type="text" id="state" name="state" placeholder="State/Province" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="zipCode" name="zipCode" placeholder="ZIP/Postal Code" required>
+                        <select id="country" name="country" required>
+                            <option value="">Select Country</option>
+                            <option value="US">United States</option>
+                            <option value="CA">Canada</option>
+                            <option value="GB">United Kingdom</option>
+                            <option value="AU">Australia</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <textarea id="notes" name="notes" placeholder="Delivery Instructions (Optional)" rows="2"></textarea>
+                    </div>
+                </form>
+                <button class="btn btn-continue" id="continueToPayment">
+                    <span>Continue to Payment</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Payment Section (Initially Hidden) -->
+            <div class="payment-section" id="paymentSection" style="display: none;">
+                <button class="btn-back" id="backToShipping">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    <span>Back to Shipping</span>
+                </button>
+                <h3>Payment Method</h3>
+                <div class="shipping-summary">
+                    <p class="summary-label">Shipping to:</p>
+                    <p class="summary-address" id="shippingSummary"></p>
+                </div>
+                <div class="payment-options-sidebar">
+                    <button class="payment-option-sidebar active" data-method="card">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 8H4V6h16m0 12H4v-6h16m0-8H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2z"/>
+                        </svg>
+                        <span>Credit Card</span>
+                    </button>
+                    <button class="payment-option-sidebar" data-method="solana">
+                        <svg width="24" height="20" viewBox="0 0 397.7 311.7" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="solanaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#9945FF;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#14F195;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path fill="url(#solanaGradient)" d="M64.6,237.9c2.4-2.4,5.7-3.8,9.2-3.8h317.4c5.8,0,8.7,7,4.6,11.1l-62.7,62.7c-2.4,2.4-5.7,3.8-9.2,3.8H6.5c-5.8,0-8.7-7-4.6-11.1L64.6,237.9z"/>
+                            <path fill="url(#solanaGradient)" d="M64.6,3.8C67.1,1.4,70.4,0,73.8,0h317.4c5.8,0,8.7,7,4.6,11.1l-62.7,62.7c-2.4,2.4-5.7,3.8-9.2,3.8H6.5c-5.8,0-8.7-7-4.6-11.1L64.6,3.8z"/>
+                            <path fill="url(#solanaGradient)" d="M333.1,120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8,0-8.7,7-4.6,11.1l62.7,62.7c2.4,2.4,5.7,3.8,9.2,3.8h317.4c5.8,0,8.7-7,4.6-11.1L333.1,120.1z"/>
+                        </svg>
+                        <span>Solana</span>
+                    </button>
+                    <button class="payment-option-sidebar" data-method="usdc">
+                        <!-- Official USDC Logo -->
+                        <svg width="24" height="24" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="none">
+                                <circle cx="16" cy="16" r="16" fill="#2775CA"/>
+                                <path fill="white" d="M20.022 18.124c0-2.124-1.28-2.852-3.84-3.156-1.828-.243-2.193-.728-2.193-1.578 0-.85.61-1.396 1.828-1.396 1.097 0 1.707.364 2.011 1.275a.458.458 0 0 0 .427.303h.975a.416.416 0 0 0 .427-.425v-.06a3.04 3.04 0 0 0-2.743-2.489V9.142c0-.243-.183-.425-.487-.486h-.915c-.243 0-.426.182-.487.486v1.396c-1.829.242-2.986 1.456-2.986 2.974 0 2.002 1.218 2.791 3.778 3.095 1.707.303 2.255.668 2.255 1.639 0 .97-.853 1.638-2.011 1.638-1.585 0-2.133-.667-2.316-1.578-.06-.242-.244-.364-.427-.364h-1.036a.416.416 0 0 0-.426.425v.06c.243 1.518 1.219 2.61 3.23 2.914v1.457c0 .242.183.425.487.485h.915c.243 0 .426-.182.487-.485V21.34c1.829-.303 3.047-1.578 3.047-3.217z"/>
+                                <path fill="white" d="M12.892 24.497c-4.754-1.7-7.192-6.98-5.424-11.653.914-2.55 2.925-4.491 5.424-5.402.244-.121.365-.303.365-.607v-.85c0-.242-.061-.424-.244-.485a.411.411 0 0 0-.365.06c-5.45 1.88-8.375 7.767-6.456 13.216 1.158 3.337 3.84 5.888 7.192 6.857.121.061.304.061.365 0 .243-.06.304-.243.304-.485v-.791c-.06-.243-.182-.485-.426-.607l.06.061z"/>
+                                <path fill="white" d="M20.022 7.091c-.122-.06-.305-.06-.366 0-.243.06-.304.243-.304.485v.791c0 .303.182.485.426.607 4.754 1.7 7.192 6.98 5.424 11.653-.914 2.55-2.925 4.491-5.424 5.402-.244.121-.365.303-.365.607v.85c0 .242.061.424.244.485a.411.411 0 0 0 .365-.06c5.45-1.88 8.375-7.767 6.456-13.216-1.158-3.337-3.84-5.888-7.192-6.857z"/>
+                            </g>
+                        </svg>
+                        <span>USDC</span>
+                    </button>
+                    <button class="payment-option-sidebar" data-method="usdt">
+                        <!-- Official USDT/Tether Logo -->
+                        <svg width="24" height="24" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="none" fill-rule="evenodd">
+                                <circle cx="16" cy="16" r="16" fill="#26A17B"/>
+                                <path fill="white" fill-rule="nonzero" d="M17.922 17.383v-.002c-.11.008-.677.042-1.942.042-1.01 0-1.721-.03-1.971-.042v.003c-3.888-.171-6.79-.848-6.79-1.658 0-.809 2.902-1.486 6.79-1.66v2.644c.254.018.982.061 1.988.061 1.207 0 1.812-.05 1.925-.06v-2.643c3.88.173 6.775.85 6.775 1.658 0 .81-2.895 1.485-6.775 1.657m0-3.59v-2.366h5.414V7.819H8.595v3.608h5.414v2.365c-4.4.202-7.709 1.074-7.709 2.118 0 1.044 3.309 1.915 7.709 2.118v7.582h3.913v-7.584c4.393-.202 7.694-1.073 7.694-2.116 0-1.043-3.301-1.914-7.694-2.117"/>
+                            </g>
+                        </svg>
+                        <span>USDT</span>
+                    </button>
+                    <button class="payment-option-sidebar" data-method="etransfer">
+                        <svg width="24" height="24" viewBox="0 0 200 200" fill="none">
+                            <!-- Interac e-Transfer logo -->
+                            <!-- Yellow top section -->
+                            <rect x="0" y="0" width="200" height="120" rx="15" fill="#FDB913"/>
+                            <!-- Gray bottom section -->
+                            <rect x="0" y="120" width="200" height="80" rx="15" fill="#58595B"/>
+                            <!-- Hand icon -->
+                            <g transform="translate(20, 45)">
+                                <rect x="15" y="25" width="35" height="45" rx="5" fill="#1A1919"/>
+                                <rect x="0" y="35" width="15" height="8" fill="#1A1919"/>
+                                <rect x="0" y="45" width="15" height="8" fill="#1A1919"/>
+                                <rect x="0" y="55" width="15" height="8" fill="#1A1919"/>
+                            </g>
+                            <!-- Interac text -->
+                            <text x="70" y="75" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1A1919">Interac</text>
+                            <!-- e-Transfer text -->
+                            <text x="100" y="165" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">e-Transfer</text>
+                            <!-- Registered trademark -->
+                            <circle cx="175" cy="25" r="8" fill="none" stroke="#1A1919" stroke-width="2"/>
+                            <text x="175" y="30" font-family="Arial, sans-serif" font-size="12" fill="#1A1919" text-anchor="middle">®</text>
+                        </svg>
+                        <span>e-Transfer</span>
+                    </button>
+                </div>
+                
+                <!-- Credit Card Form (Stripe) -->
+                <div class="credit-card-form" id="creditCardForm" style="display: block; margin-top: 1rem;">
+                    <h4 style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem;">Card Information</h4>
+                    <form id="stripePaymentForm">
+                        <div class="form-row">
+                            <input type="text" id="cardName" placeholder="Cardholder Name" required>
+                        </div>
+                        <div class="form-row">
+                            <div id="card-element" style="padding: 16px; border-radius: 8px; min-height: 60px; background-color: #ffffff !important; border: 1px solid rgba(139, 92, 246, 0.3) !important; display: block !important; visibility: visible !important; opacity: 1 !important; position: relative !important;">
+                                <!-- Stripe card element will be mounted here -->
+                            </div>
+                        </div>
+                        <div id="card-errors" class="error-message" role="alert"></div>
+                        
+                        <div class="secure-badge" style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; font-size: 0.75rem; color: rgba(255, 255, 255, 0.5);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                            </svg>
+                            <span>Secured by Stripe</span>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Solana Payment Info -->
+                <div class="solana-payment-info" id="solanaPaymentInfo" style="display: none; margin-top: 1rem;">
+                    <h4 style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem;">Solana Payment Options</h4>
+                    
+                    <!-- Option 1: Connected Wallet -->
+                    <div class="payment-option" id="connectedWalletOption" style="margin-bottom: 1.5rem; display: none;">
+                        <p style="font-size: 0.85rem; color: #14F195; margin-bottom: 0.5rem;">✅ Wallet Connected</p>
+                        <p style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.6);">Click "Complete Order" to send payment from your connected wallet</p>
+                    </div>
+                    
+                    <!-- Option 2: Manual Payment -->
+                    <div class="payment-option" id="manualPaymentOption">
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #14F195; font-weight: bold;">📋 Manual Payment Instructions:</p>
+                        
+                        <!-- Step 1: Send Payment -->
+                        <div style="background: rgba(0, 0, 0, 0.4); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid rgba(153, 69, 255, 0.3);">
+                            <p style="font-size: 0.8rem; margin-bottom: 0.8rem; color: white;">
+                                <span style="color: #9945FF; font-weight: bold;">Step 1:</span> Send SOL to our wallet
+                            </p>
+                            
+                            <!-- Business Wallet -->
+                            <div class="wallet-address-box" style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <code id="solanaAddress" style="flex: 1; padding: 0.6rem; background: rgba(153, 69, 255, 0.2); border-radius: 6px; font-size: 0.7rem; color: #14F195; word-break: break-all;">HN7cABqLq46Es1jh92dQQisAq662SmxELLLsHHe4YWrH</code>
+                                <button type="button" class="copy-btn" onclick="copyAddress()" style="padding: 0.6rem; background: linear-gradient(135deg, #9945FF, #14F195); border: none; border-radius: 6px; color: white; cursor: pointer; font-size: 0.75rem;">Copy</button>
+                            </div>
+                            
+                            <!-- Amount Display -->
+                            <div style="background: rgba(20, 241, 149, 0.1); padding: 0.8rem; border-radius: 6px; border: 1px solid rgba(20, 241, 149, 0.3);">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
+                                    <span style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.7);">Amount (USD):</span>
+                                    <span style="font-size: 0.85rem; color: white; font-weight: bold;">$<span id="usdAmount">0.00</span></span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
+                                    <span style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.7);">Amount (SOL):</span>
+                                    <span style="font-size: 1rem; color: #14F195; font-weight: bold;"><span id="solAmount">0.000000</span> SOL</span>
+                                </div>
+                                <div style="text-align: center; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                                    <small id="solPriceDisplay" style="font-size: 0.65rem; color: #9945FF;">Loading SOL price...</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Enter Transaction Signature -->
+                        <div style="background: rgba(0, 0, 0, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(153, 69, 255, 0.3);">
+                            <p style="font-size: 0.8rem; margin-bottom: 0.8rem; color: white;">
+                                <span style="color: #9945FF; font-weight: bold;">Step 2:</span> Enter transaction signature for verification
+                            </p>
+                            <input type="text" 
+                                   id="transactionSignature" 
+                                   placeholder="Paste your transaction signature here..." 
+                                   style="width: 100%; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(153, 69, 255, 0.3); border-radius: 6px; color: white; font-size: 0.75rem; font-family: monospace;">
+                            <small style="font-size: 0.65rem; color: #888; display: block; margin-top: 0.5rem;">
+                                💡 After sending SOL, copy the transaction signature from your wallet
+                            </small>
+                        </div>
+                        
+                        <p class="payment-note" style="font-size: 0.7rem; color: rgba(255, 255, 255, 0.5); margin-top: 1rem; text-align: center;">
+                            Click "Complete Order" to verify your payment on the blockchain
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- USDC Payment Info -->
+                <div class="usdc-payment-info" id="usdcPaymentInfo" style="display: none; margin-top: 1rem;">
+                    <h4 style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem;">USDC Payment (SPL Token)</h4>
+                    
+                    <div class="payment-option" id="usdcManualPaymentOption">
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #2775CA; font-weight: bold;">📋 USDC Payment Instructions:</p>
+                        
+                        <div style="background: rgba(0, 0, 0, 0.4); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid rgba(39, 117, 202, 0.3);">
+                            <p style="font-size: 0.8rem; margin-bottom: 0.8rem; color: white;">
+                                <span style="color: #2775CA; font-weight: bold;">Step 1:</span> Send USDC to our wallet
+                            </p>
+                            
+                            <div class="wallet-address-box" style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <code style="flex: 1; padding: 0.6rem; background: rgba(39, 117, 202, 0.2); border-radius: 6px; font-size: 0.7rem; color: #2775CA; word-break: break-all;">HN7cABqLq46Es1jh92dQQisAq662SmxELLLsHHe4YWrH</code>
+                                <button type="button" class="copy-btn" onclick="copyAddress('HN7cABqLq46Es1jh92dQQisAq662SmxELLLsHHe4YWrH')" style="padding: 0.6rem; background: #2775CA; border: none; border-radius: 6px; color: white; cursor: pointer; font-size: 0.75rem;">Copy</button>
+                            </div>
+                            
+                            <div style="background: rgba(39, 117, 202, 0.1); padding: 0.8rem; border-radius: 6px; border: 1px solid rgba(39, 117, 202, 0.3);">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
+                                    <span style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.7);">Amount:</span>
+                                    <span style="font-size: 1rem; color: #2775CA; font-weight: bold;">$<span class="usd-amount-display">0.00</span> USDC</span>
+                                </div>
+                                <div style="text-align: center; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                                    <small style="font-size: 0.65rem; color: #2775CA;">SPL Token on Solana Network</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: rgba(0, 0, 0, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(39, 117, 202, 0.3);">
+                            <p style="font-size: 0.8rem; margin-bottom: 0.8rem; color: white;">
+                                <span style="color: #2775CA; font-weight: bold;">Step 2:</span> Enter transaction signature
+                            </p>
+                            <input type="text" 
+                                   id="usdcTransactionSignature" 
+                                   placeholder="Paste your USDC transaction signature..." 
+                                   style="width: 100%; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(39, 117, 202, 0.3); border-radius: 6px; color: white; font-size: 0.75rem; font-family: monospace;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- USDT Payment Info -->
+                <div class="usdt-payment-info" id="usdtPaymentInfo" style="display: none; margin-top: 1rem;">
+                    <h4 style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem;">USDT Payment (SPL Token)</h4>
+                    
+                    <div class="payment-option" id="usdtManualPaymentOption">
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #26A17B; font-weight: bold;">📋 USDT Payment Instructions:</p>
+                        
+                        <div style="background: rgba(0, 0, 0, 0.4); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid rgba(38, 161, 123, 0.3);">
+                            <p style="font-size: 0.8rem; margin-bottom: 0.8rem; color: white;">
+                                <span style="color: #26A17B; font-weight: bold;">Step 1:</span> Send USDT to our wallet
+                            </p>
+                            
+                            <div class="wallet-address-box" style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <code style="flex: 1; padding: 0.6rem; background: rgba(38, 161, 123, 0.2); border-radius: 6px; font-size: 0.7rem; color: #26A17B; word-break: break-all;">HN7cABqLq46Es1jh92dQQisAq662SmxELLLsHHe4YWrH</code>
+                                <button type="button" class="copy-btn" onclick="copyAddress('HN7cABqLq46Es1jh92dQQisAq662SmxELLLsHHe4YWrH')" style="padding: 0.6rem; background: #26A17B; border: none; border-radius: 6px; color: white; cursor: pointer; font-size: 0.75rem;">Copy</button>
+                            </div>
+                            
+                            <div style="background: rgba(38, 161, 123, 0.1); padding: 0.8rem; border-radius: 6px; border: 1px solid rgba(38, 161, 123, 0.3);">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
+                                    <span style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.7);">Amount:</span>
+                                    <span style="font-size: 1rem; color: #26A17B; font-weight: bold;">$<span class="usd-amount-display">0.00</span> USDT</span>
+                                </div>
+                                <div style="text-align: center; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                                    <small style="font-size: 0.65rem; color: #26A17B;">SPL Token on Solana Network</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: rgba(0, 0, 0, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(38, 161, 123, 0.3);">
+                            <p style="font-size: 0.8rem; margin-bottom: 0.8rem; color: white;">
+                                <span style="color: #26A17B; font-weight: bold;">Step 2:</span> Enter transaction signature
+                            </p>
+                            <input type="text" 
+                                   id="usdtTransactionSignature" 
+                                   placeholder="Paste your USDT transaction signature..." 
+                                   style="width: 100%; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(38, 161, 123, 0.3); border-radius: 6px; color: white; font-size: 0.75rem; font-family: monospace;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- e-Transfer Payment Info -->
+                <div class="etransfer-payment-info" id="etransferPaymentInfo" style="display: none; margin-top: 1rem;">
+                    <h4 style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem;">Interac e-Transfer</h4>
+                    <div class="etransfer-info" style="background: rgba(253, 185, 19, 0.1); padding: 1rem; border-radius: 8px;">
+                        <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> payments@darkpinopeptides.com</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Security Question:</strong> What is your order number?</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Answer:</strong> <span id="orderNumberDisplay">Will be generated</span></p>
+                        <p class="payment-note" style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); margin-top: 0.5rem;">Please include order number in transfer message</p>
+                    </div>
+                </div>
+                
+                <button class="btn btn-checkout-sidebar" id="checkoutBtn">
+                    <span>Complete Order</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cart Overlay -->
+    <div id="cartOverlay" class="cart-overlay"></div>
+
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- Unified Stripe Integration -->
+    <script src="stripe-integration.js?v=2"></script>
+    <script src="script.js?v=25"></script>
+    <script>
+        // Wallet extension conflict prevention
+        (function() {
+            // Prevent wallet extensions from overwriting each other
+            let originalEthereum = window.ethereum;
+            let ethereumProviders = [];
+            
+            // Store multiple ethereum providers
+            if (originalEthereum) {
+                ethereumProviders.push(originalEthereum);
+            }
+            
+            // Override ethereum setter to handle conflicts gracefully
+            Object.defineProperty(window, 'ethereum', {
+                get: function() {
+                    // Return the last provider or original
+                    return ethereumProviders[ethereumProviders.length - 1] || originalEthereum;
+                },
+                set: function(newProvider) {
+                    if (newProvider && !ethereumProviders.includes(newProvider)) {
+                        ethereumProviders.push(newProvider);
+                        console.log('🔗 New ethereum provider added:', newProvider.constructor?.name || 'Unknown');
+                    }
+                },
+                configurable: true,
+                enumerable: true
+            });
+            
+            console.log('🛡️ Wallet extension conflict protection enabled');
+        })();
+        
+        // Debug script loading order
+        console.log('📋 Script loading status:', {
+            stripeLoaded: typeof Stripe !== 'undefined',
+            stripeIntegrationLoaded: typeof stripeIntegration !== 'undefined',
+            timestamp: new Date().toISOString()
+        });
+        
+        // Wait for everything to be ready
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                console.log('🔍 Final script status after page load:', {
+                    stripeLoaded: typeof Stripe !== 'undefined',
+                    stripeIntegrationLoaded: typeof stripeIntegration !== 'undefined',
+                    stripeIntegrationStatus: typeof stripeIntegration !== 'undefined' ? stripeIntegration.getStatus() : 'not available',
+                    addToCartAvailable: typeof window.addToCart === 'function'
+                });
+            }, 1000);
+        });
+    </script>
+    <script>
+        // Fix for stuck overlay - remove active class on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove any stuck active overlays
+            const cartOverlay = document.getElementById('cartOverlay');
+            const cartSidebar = document.getElementById('cartSidebar');
+            
+            if (cartOverlay) {
+                cartOverlay.classList.remove('active');
+            }
+            if (cartSidebar) {
+                cartSidebar.classList.remove('active');
+            }
+            
+            // Also check for any modal overlays
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+            });
+            
+            console.log('Overlay fix applied - removed any stuck overlays');
+        });
+    </script>
+    <!-- Solana Payment Styles -->
+    <link rel="stylesheet" href="solana-payment-styles.css?v=2">
+    <style>
+        /* Force hide validation modal - now shows in sidebar */
+        .validation-modal, #blockchain-validation-modal, #manual-validation-modal {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Ensure Stripe card element iframe is always visible */
+        #card-element iframe {
+            height: 50px !important;
+            min-height: 50px !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            border: none !important;
+            width: 100% !important;
+            background: transparent !important;
+        }
+        
+        /* Ensure Stripe element containers are visible */
+        #card-element .__PrivateStripeElement {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            min-height: 50px !important;
+            height: auto !important;
+        }
+        
+        /* Fix any potential z-index issues and ensure container is ready */
+        #card-element {
+            z-index: 10 !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* Ensure iframe content is visible */
+        #card-element iframe body {
+            background: white !important;
+        }
+    </style>
+    <!-- Simple Wallet Connection -->
+    <script src="wallet-simple.js"></script>
+    <!-- Solana Web3.js for blockchain interactions -->
+    <script src="https://unpkg.com/@solana/web3.js@1.95.3/dist/index.iife.js"></script>
+    <script>
+        // Ensure Solana Web3 is available globally
+        if (typeof solanaWeb3 === 'undefined' && typeof window.solana !== 'undefined') {
+            window.solanaWeb3 = window.solana;
+        }
+        console.log('🔗 Solana Web3 availability:', typeof solanaWeb3, typeof window.solana);
+    </script>
+    <!-- Solana Payment Flow with Validation -->
+    <script src="solana-payment-flow.js?v=3"></script>
+</body>
+</html>

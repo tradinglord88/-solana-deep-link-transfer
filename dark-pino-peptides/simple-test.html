@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Cart Test</title>
+    <style>
+        body { 
+            background: #0D0D0D; 
+            color: white; 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+        }
+        
+        .test-button { 
+            background: #9945FF; 
+            color: white; 
+            border: none; 
+            padding: 15px 30px; 
+            margin: 10px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px; 
+        }
+        
+        .test-button:hover { 
+            background: #7c3aed; 
+        }
+        
+        .cart-count { 
+            background: red; 
+            color: white; 
+            border-radius: 50%; 
+            width: 25px; 
+            height: 25px; 
+            display: none; 
+            text-align: center; 
+            line-height: 25px; 
+            font-size: 14px; 
+            position: absolute; 
+            top: -5px; 
+            right: -5px; 
+        }
+        
+        .cart-button {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        
+        .status {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .success { color: #4ade80; }
+        .error { color: #ef4444; }
+        
+        #cartSidebar {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: #1a1a1a;
+            border-left: 2px solid #9945FF;
+            transition: right 0.3s;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        #cartSidebar.active {
+            right: 0;
+        }
+        #cartOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        #cartOverlay.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛒 Simple Cart Test</h1>
+    
+    <div class="status" id="status">
+        Loading cart system...
+    </div>
+    
+    <div>
+        <!-- Test buttons with onclick handlers like in the main site -->
+        <button class="test-button" onclick="addToCart('BPC-157', 89.99, '5mg', 'images/tb-500.png')">
+            Add BPC-157 to Cart
+        </button>
+        
+        <button class="test-button" onclick="addToCart('TB-500', 94.99, '5mg', 'images/tb-500.png')">
+            Add TB-500 to Cart
+        </button>
+        
+        <button class="test-button" onclick="addToCart('GHK-Cu', 129.99, '50mg', 'images/tb-500.png')">
+            Add GHK-Cu to Cart
+        </button>
+    </div>
+    
+    <div class="cart-button">
+        <button class="test-button" onclick="openCartSidebar()">
+            Open Cart
+            <span class="cart-count">0</span>
+        </button>
+    </div>
+    
+    <div>
+        <button class="test-button" onclick="testCartDirectly()">Test Cart Directly</button>
+        <button class="test-button" onclick="clearTestCart()">Clear Cart</button>
+    </div>
+    
+    <!-- Minimal cart elements -->
+    <div id="cartSidebar">
+        <h2>Cart</h2>
+        <button onclick="closeCartSidebar()" style="float: right; background: none; border: none; color: white; font-size: 24px; cursor: pointer;">&times;</button>
+        <div id="cartItemsList"></div>
+        <div id="cartEmpty">Your cart is empty</div>
+        <div style="margin-top: 20px; border-top: 1px solid #333; padding-top: 20px;">
+            <div>Subtotal: <span id="cart-subtotal">$0.00</span></div>
+            <div>Tax: <span id="cart-tax">$0.00</span></div>
+            <div>Shipping: <span id="cart-shipping">$9.99</span></div>
+            <div><strong>Total: <span id="cart-total">$0.00</span></strong></div>
+        </div>
+    </div>
+    
+    <div id="cartOverlay"></div>
+    
+    <!-- Load the fixed script -->
+    <script src="script.js?v=30"></script>
+    
+    <script>
+        function testCartDirectly() {
+            console.log('=== Direct Cart Test ===');
+            console.log('Cart array:', window.cart);
+            console.log('Cart length:', window.cart ? window.cart.length : 'undefined');
+            console.log('addToCart function:', typeof window.addToCart);
+            
+            if (typeof window.addToCart === 'function') {
+                console.log('Function signature check:', window.addToCart.toString().includes('cart.push'));
+            }
+        }
+        
+        function clearTestCart() {
+            if (window.cart) {
+                window.cart.length = 0;
+                if (typeof window.updateCartDisplay === 'function') {
+                    window.updateCartDisplay();
+                }
+                console.log('Cart cleared');
+            }
+        }
+        
+        function updateStatus() {
+            const statusDiv = document.getElementById('status');
+            const cartCount = document.querySelector('.cart-count');
+            
+            if (typeof window.addToCart === 'function' && window.cart) {
+                statusDiv.innerHTML = `<span class="success">✅ Cart system loaded successfully</span>`;
+                statusDiv.innerHTML += `<br>Cart items: ${window.cart.length}`;
+                statusDiv.innerHTML += `<br>Functions available: addToCart(${typeof window.addToCart}), showNotification(${typeof window.showNotification})`;
+                
+                // Update cart count
+                if (cartCount) {
+                    const totalItems = window.cart.reduce ? window.cart.reduce((sum, item) => sum + (item.quantity || 1), 0) : window.cart.length;
+                    cartCount.textContent = totalItems;
+                    cartCount.style.display = totalItems > 0 ? 'block' : 'none';
+                }
+            } else {
+                statusDiv.innerHTML = `<span class="error">❌ Cart system failed to load</span>`;
+            }
+        }
+        
+        // Update status when page loads
+        setTimeout(updateStatus, 500);
+        
+        // Update status every 2 seconds
+        setInterval(updateStatus, 2000);
+    </script>
+</body>
+</html>

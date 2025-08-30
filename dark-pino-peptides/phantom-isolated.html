@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Isolated Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #9945FF 0%, #14F195 100%);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        button {
+            background: linear-gradient(135deg, #9945FF 0%, #14F195 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .warning {
+            color: #ffc107;
+            font-weight: bold;
+        }
+        .detection-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #dc3545;
+        }
+        .status-indicator.detected {
+            background: #28a745;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+        }
+        code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 Phantom Isolated Test</h1>
+        
+        <p>This page loads <strong>without any other scripts</strong> to test Phantom in isolation.</p>
+        
+        <div class="detection-status">
+            <span class="status-indicator" id="phantomIndicator"></span>
+            <span id="phantomStatus">Checking for Phantom...</span>
+        </div>
+        
+        <div class="detection-status">
+            <span class="status-indicator" id="solanaIndicator"></span>
+            <span id="solanaStatus">Checking for Solana...</span>
+        </div>
+        
+        <div style="margin: 30px 0;">
+            <button onclick="detectPhantom()">🔍 Detect Phantom</button>
+            <button onclick="connectSimple()">🔗 Connect Simple</button>
+            <button onclick="connectWithRetry()">🔄 Connect with Retry</button>
+            <button onclick="clearStatus()">🗑️ Clear</button>
+        </div>
+        
+        <div id="status"></div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 10px;">
+            <strong>💡 If Phantom is not detected:</strong>
+            <ol style="text-align: left; margin: 10px 0;">
+                <li>Make sure Phantom extension is installed</li>
+                <li>Click the Phantom extension icon to wake it up</li>
+                <li>Refresh this page (Ctrl+R / Cmd+R)</li>
+                <li>Try in a new incognito window with only Phantom enabled</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const status = document.getElementById('status');
+        const phantomIndicator = document.getElementById('phantomIndicator');
+        const solanaIndicator = document.getElementById('solanaIndicator');
+        const phantomStatus = document.getElementById('phantomStatus');
+        const solanaStatus = document.getElementById('solanaStatus');
+        
+        function log(message, type = '') {
+            const timestamp = new Date().toLocaleTimeString();
+            status.innerHTML += `<div class="${type}">[${timestamp}] ${message}</div>`;
+            console.log(message);
+        }
+        
+        function clearStatus() {
+            status.innerHTML = '';
+        }
+        
+        function updateIndicators() {
+            if (window.phantom?.solana) {
+                phantomIndicator.classList.add('detected');
+                phantomStatus.textContent = '✅ Phantom detected at window.phantom.solana';
+                phantomStatus.className = 'success';
+            } else {
+                phantomIndicator.classList.remove('detected');
+                phantomStatus.textContent = '❌ Phantom not found';
+                phantomStatus.className = 'error';
+            }
+            
+            if (window.solana) {
+                solanaIndicator.classList.add('detected');
+                solanaStatus.textContent = '✅ Solana detected at window.solana';
+                solanaStatus.className = 'success';
+            } else {
+                solanaIndicator.classList.remove('detected');
+                solanaStatus.textContent = '❌ Solana not found';
+                solanaStatus.className = 'error';
+            }
+        }
+        
+        function detectPhantom() {
+            clearStatus();
+            log('Starting Phantom detection...');
+            
+            const checks = {
+                'window.phantom': !!window.phantom,
+                'window.phantom?.solana': !!window.phantom?.solana,
+                'window.phantom?.solana?.isPhantom': window.phantom?.solana?.isPhantom,
+                'window.solana': !!window.solana,
+                'window.solana?.isPhantom': window.solana?.isPhantom,
+                'window.ethereum': !!window.ethereum,
+                'window.ethereum?.isMetaMask': window.ethereum?.isMetaMask
+            };
+            
+            Object.entries(checks).forEach(([key, value]) => {
+                if (value === true) {
+                    log(`${key}: <strong>TRUE</strong>`, 'success');
+                } else if (value) {
+                    log(`${key}: ${value}`, 'success');
+                } else {
+                    log(`${key}: false`, 'error');
+                }
+            });
+            
+            updateIndicators();
+            
+            const provider = window.phantom?.solana || window.solana;
+            if (provider?.isPhantom) {
+                log('✅ Phantom is available and ready!', 'success');
+                return true;
+            } else if (provider) {
+                log('⚠️ Found a Solana provider but isPhantom flag is missing', 'warning');
+                return true;
+            } else {
+                log('❌ Phantom not detected', 'error');
+                return false;
+            }
+        }
+        
+        async function connectSimple() {
+            clearStatus();
+            log('Attempting simple connection...');
+            
+            const provider = window.phantom?.solana || window.solana;
+            
+            if (!provider) {
+                log('❌ No provider found', 'error');
+                return;
+            }
+            
+            try {
+                log('Calling provider.connect()...');
+                const response = await provider.connect();
+                log(`✅ Connected! Public Key: ${response.publicKey.toString()}`, 'success');
+            } catch (error) {
+                log(`❌ Connection failed: ${error.message}`, 'error');
+                console.error(error);
+            }
+        }
+        
+        async function connectWithRetry() {
+            clearStatus();
+            log('Starting connection with retry...');
+            
+            let attempts = 0;
+            const maxAttempts = 30;
+            
+            const tryConnect = async () => {
+                attempts++;
+                log(`Attempt ${attempts}/${maxAttempts}...`);
+                
+                const provider = window.phantom?.solana || window.solana;
+                
+                if (provider) {
+                    log('Provider found, attempting connection...', 'success');
+                    try {
+                        const response = await provider.connect();
+                        log(`✅ Connected! Public Key: ${response.publicKey.toString()}`, 'success');
+                        return true;
+                    } catch (error) {
+                        log(`Connection error: ${error.message}`, 'error');
+                        throw error;
+                    }
+                }
+                
+                if (attempts < maxAttempts) {
+                    log('Provider not found, retrying in 100ms...', 'warning');
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    return tryConnect();
+                } else {
+                    log('❌ Max attempts reached. Phantom not found.', 'error');
+                    return false;
+                }
+            };
+            
+            try {
+                await tryConnect();
+            } catch (error) {
+                log(`❌ Final error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Auto-detect on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                log('Page loaded, auto-detecting...');
+                updateIndicators();
+                detectPhantom();
+            }, 1000);
+        });
+        
+        // Listen for late injection
+        let checkCount = 0;
+        const checkInterval = setInterval(() => {
+            checkCount++;
+            if (window.phantom?.solana || window.solana) {
+                clearInterval(checkInterval);
+                log('🎉 Phantom just became available!', 'success');
+                updateIndicators();
+            } else if (checkCount > 50) {
+                clearInterval(checkInterval);
+            }
+        }, 100);
+    </script>
+</body>
+</html>

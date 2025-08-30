@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Direct Connect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: linear-gradient(135deg, #1a1a2e, #0f0f23);
+            border: 1px solid #9945FF;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(153, 69, 255, 0.3);
+        }
+        
+        h1 {
+            background: linear-gradient(135deg, #9945FF, #14F195);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        
+        .status-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background: #dc3545;
+        }
+        
+        .indicator.success {
+            background: #14F195;
+            box-shadow: 0 0 10px #14F195;
+        }
+        
+        .indicator.warning {
+            background: #ffc107;
+            box-shadow: 0 0 10px #ffc107;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #9945FF, #14F195);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(153, 69, 255, 0.4);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .instructions {
+            background: rgba(153, 69, 255, 0.1);
+            border: 1px solid rgba(153, 69, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .instructions h3 {
+            color: #14F195;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+        }
+        
+        .instructions li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        .log {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            color: #0f0;
+        }
+        
+        .log-entry {
+            margin: 5px 0;
+        }
+        
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #9945FF;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        code {
+            background: rgba(153, 69, 255, 0.2);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        .success-msg {
+            background: rgba(20, 241, 149, 0.1);
+            border: 1px solid #14F195;
+            color: #14F195;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .error-msg {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff4444;
+            color: #ff4444;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👻 Phantom Direct Connect</h1>
+        
+        <div class="status-box">
+            <h3>Connection Status</h3>
+            <div class="status-item">
+                <span class="indicator" id="phantom-indicator"></span>
+                <span id="phantom-status">Checking for Phantom...</span>
+            </div>
+            <div class="status-item">
+                <span class="indicator" id="connection-indicator"></span>
+                <span id="connection-status">Not connected</span>
+            </div>
+        </div>
+        
+        <div id="success-msg" class="success-msg">
+            ✅ Connected successfully!
+            <br>Address: <span id="wallet-address"></span>
+        </div>
+        
+        <div id="error-msg" class="error-msg">
+            ❌ <span id="error-text"></span>
+        </div>
+        
+        <button class="btn" onclick="detectWithDelay()">
+            🔍 Detect Phantom (Wait 5 seconds)
+        </button>
+        
+        <button class="btn" onclick="connectDirect()" id="connect-btn" disabled>
+            🔗 Connect Wallet
+        </button>
+        
+        <button class="btn btn-secondary" onclick="location.href='index.html'">
+            🏠 Return to Main Site
+        </button>
+        
+        <div class="instructions">
+            <h3>📌 Before Clicking Detect:</h3>
+            <ol>
+                <li><strong>Click the Phantom icon</strong> in your browser toolbar</li>
+                <li><strong>Make sure it's unlocked</strong> (enter password if needed)</li>
+                <li><strong>Check if it says "Connected"</strong> to this site</li>
+                <li>If not connected, click to connect it</li>
+                <li><strong>Then click "Detect Phantom"</strong> above</li>
+            </ol>
+        </div>
+        
+        <div class="log" id="log"></div>
+    </div>
+
+    <script>
+        const log = document.getElementById('log');
+        const phantomIndicator = document.getElementById('phantom-indicator');
+        const connectionIndicator = document.getElementById('connection-indicator');
+        const phantomStatus = document.getElementById('phantom-status');
+        const connectionStatus = document.getElementById('connection-status');
+        const connectBtn = document.getElementById('connect-btn');
+        const successMsg = document.getElementById('success-msg');
+        const errorMsg = document.getElementById('error-msg');
+        const walletAddress = document.getElementById('wallet-address');
+        const errorText = document.getElementById('error-text');
+        
+        let detectedProvider = null;
+        
+        function addLog(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            log.innerHTML += `<div class="log-entry">[${timestamp}] ${message}</div>`;
+            log.scrollTop = log.scrollHeight;
+            console.log(message);
+        }
+        
+        function updatePhantomStatus(found) {
+            if (found) {
+                phantomIndicator.classList.add('success');
+                phantomStatus.textContent = '✅ Phantom detected';
+                connectBtn.disabled = false;
+            } else {
+                phantomIndicator.classList.remove('success');
+                phantomStatus.textContent = '❌ Phantom not found';
+                connectBtn.disabled = true;
+            }
+        }
+        
+        function updateConnectionStatus(connected, address = null) {
+            if (connected) {
+                connectionIndicator.classList.add('success');
+                connectionStatus.textContent = '✅ Connected';
+                if (address) {
+                    walletAddress.textContent = address;
+                    successMsg.style.display = 'block';
+                    errorMsg.style.display = 'none';
+                }
+            } else {
+                connectionIndicator.classList.remove('success');
+                connectionStatus.textContent = '⚠️ Not connected';
+                successMsg.style.display = 'none';
+            }
+        }
+        
+        async function detectWithDelay() {
+            addLog('Starting 5-second detection process...');
+            connectBtn.disabled = true;
+            connectBtn.innerHTML = '<span class="spinner"></span> Detecting...';
+            
+            let found = false;
+            for (let i = 0; i < 50; i++) {
+                addLog(`Check ${i + 1}/50 (${(i * 0.1).toFixed(1)}s)`);
+                
+                // Check for Phantom
+                if (window.phantom?.solana?.isPhantom) {
+                    addLog('✅ Found Phantom at window.phantom.solana!');
+                    detectedProvider = window.phantom.solana;
+                    found = true;
+                    break;
+                }
+                
+                if (window.solana?.isPhantom) {
+                    addLog('✅ Found Phantom at window.solana!');
+                    detectedProvider = window.solana;
+                    found = true;
+                    break;
+                }
+                
+                // Even try without isPhantom flag
+                if (i > 20 && window.solana && !window.ethereum) {
+                    addLog('⚠️ Found window.solana without isPhantom flag, using it anyway');
+                    detectedProvider = window.solana;
+                    found = true;
+                    break;
+                }
+                
+                await new Promise(r => setTimeout(r, 100));
+            }
+            
+            connectBtn.innerHTML = '🔗 Connect Wallet';
+            
+            if (found) {
+                updatePhantomStatus(true);
+                addLog('Ready to connect! Click "Connect Wallet"');
+                
+                // Try auto-connect if already trusted
+                try {
+                    const resp = await detectedProvider.connect({ onlyIfTrusted: true });
+                    addLog('Auto-connected! Address: ' + resp.publicKey.toString());
+                    updateConnectionStatus(true, resp.publicKey.toString());
+                } catch (e) {
+                    // Auto-connect not available
+                    addLog('Auto-connect not available. Click Connect Wallet.');
+                }
+            } else {
+                updatePhantomStatus(false);
+                errorText.textContent = 'Phantom not detected after 5 seconds. Please check the instructions above.';
+                errorMsg.style.display = 'block';
+                addLog('❌ Not detected. Make sure to click Phantom icon first!');
+            }
+        }
+        
+        async function connectDirect() {
+            if (!detectedProvider) {
+                addLog('No provider detected yet. Click Detect first.');
+                return;
+            }
+            
+            try {
+                addLog('Requesting connection...');
+                const response = await detectedProvider.connect();
+                const address = response.publicKey.toString();
+                addLog('✅ Connected! Address: ' + address);
+                updateConnectionStatus(true, address);
+                
+                // Save to parent window if available
+                if (window.opener || window.parent !== window) {
+                    const targetWindow = window.opener || window.parent;
+                    targetWindow.phantomWallet = {
+                        provider: detectedProvider,
+                        publicKey: address,
+                        isConnected: true
+                    };
+                    addLog('Wallet state saved to main window');
+                }
+                
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    addLog('Redirecting to main site...');
+                    window.location.href = 'index.html';
+                }, 2000);
+                
+            } catch (error) {
+                addLog('❌ Error: ' + error.message);
+                errorText.textContent = error.message;
+                errorMsg.style.display = 'block';
+            }
+        }
+        
+        // Check on load
+        window.addEventListener('load', () => {
+            addLog('Page loaded. Checking for Phantom...');
+            
+            // Quick initial check
+            if (window.phantom?.solana?.isPhantom) {
+                addLog('Phantom already available!');
+                detectedProvider = window.phantom.solana;
+                updatePhantomStatus(true);
+            } else if (window.solana?.isPhantom) {
+                addLog('Phantom already available at window.solana!');
+                detectedProvider = window.solana;
+                updatePhantomStatus(true);
+            } else {
+                addLog('Phantom not immediately available.');
+                addLog('Click the Phantom extension icon, then click Detect.');
+            }
+        });
+        
+        // Listen for Phantom to appear
+        let checkCount = 0;
+        const checkInterval = setInterval(() => {
+            checkCount++;
+            if (window.phantom?.solana?.isPhantom || window.solana?.isPhantom) {
+                clearInterval(checkInterval);
+                if (!detectedProvider) {
+                    addLog('🎉 Phantom just appeared! Click Detect to use it.');
+                    phantomIndicator.classList.add('warning');
+                }
+            }
+            if (checkCount > 100) clearInterval(checkInterval); // Stop after 10 seconds
+        }, 100);
+    </script>
+</body>
+</html>

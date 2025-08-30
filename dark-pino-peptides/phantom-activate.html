@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate Phantom Wallet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+        
+        .status.checking {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .status.found {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.not-found {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .instructions h3 {
+            color: #495057;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            color: #6c757d;
+        }
+        
+        .instructions li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #9945FF, #14F195);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(153, 69, 255, 0.3);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .detection-log {
+            background: #1e1e1e;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
+        
+        .log-entry {
+            margin: 5px 0;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #9945FF;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        .success-animation {
+            animation: successPulse 0.5s ease;
+        }
+        
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <span style="font-size: 2em;">👻</span>
+            Phantom Wallet Activation
+        </h1>
+        
+        <div id="status" class="status checking">
+            <span class="spinner"></span>
+            Detecting Phantom Wallet...
+        </div>
+        
+        <div id="detection-log" class="detection-log" style="display: none;"></div>
+        
+        <div class="instructions">
+            <h3>📝 How to Activate Phantom:</h3>
+            <ol>
+                <li><strong>Install Phantom</strong> if you haven't already from <a href="https://phantom.app/" target="_blank">phantom.app</a></li>
+                <li><strong>Click the Phantom icon</strong> in your browser's extension area (usually top-right)</li>
+                <li><strong>Create or unlock</strong> your wallet</li>
+                <li><strong>Refresh this page</strong> after Phantom is active</li>
+                <li><strong>Click "Connect Wallet"</strong> below to test the connection</li>
+            </ol>
+        </div>
+        
+        <button id="detectBtn" class="btn" onclick="detectPhantom()">
+            🔍 Detect Phantom Again
+        </button>
+        
+        <button id="connectBtn" class="btn" onclick="connectPhantom()" disabled>
+            🔗 Connect Wallet
+        </button>
+        
+        <button id="installBtn" class="btn btn-secondary" onclick="window.open('https://phantom.app/', '_blank')">
+            📥 Install Phantom
+        </button>
+        
+        <button class="btn btn-secondary" onclick="location.href='index.html'">
+            🏠 Back to Main Site
+        </button>
+    </div>
+
+    <script>
+        const statusDiv = document.getElementById('status');
+        const logDiv = document.getElementById('detection-log');
+        const connectBtn = document.getElementById('connectBtn');
+        let detectionCount = 0;
+        
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `<div class="log-entry">[${timestamp}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+        
+        async function detectPhantom() {
+            detectionCount++;
+            statusDiv.className = 'status checking';
+            statusDiv.innerHTML = '<span class="spinner"></span> Detecting Phantom Wallet...';
+            logDiv.style.display = 'block';
+            logDiv.innerHTML = '';
+            connectBtn.disabled = true;
+            
+            log(`Detection attempt #${detectionCount}`);
+            
+            // Check immediately
+            log('Checking window.phantom...');
+            if (window.phantom) {
+                log('✓ window.phantom exists');
+                if (window.phantom.solana) {
+                    log('✓ window.phantom.solana exists');
+                    if (window.phantom.solana.isPhantom) {
+                        phantomFound(window.phantom.solana);
+                        return;
+                    }
+                }
+            } else {
+                log('✗ window.phantom not found');
+            }
+            
+            log('Checking window.solana...');
+            if (window.solana) {
+                log('✓ window.solana exists');
+                if (window.solana.isPhantom) {
+                    phantomFound(window.solana);
+                    return;
+                }
+            } else {
+                log('✗ window.solana not found');
+            }
+            
+            // Wait for injection
+            log('Waiting for Phantom injection (5 seconds)...');
+            let found = false;
+            
+            for (let i = 0; i < 50; i++) {
+                await new Promise(r => setTimeout(r, 100));
+                
+                if (window.phantom?.solana?.isPhantom) {
+                    log(`✓ Phantom appeared at window.phantom.solana after ${(i+1)*100}ms`);
+                    phantomFound(window.phantom.solana);
+                    found = true;
+                    break;
+                }
+                
+                if (window.solana?.isPhantom) {
+                    log(`✓ Phantom appeared at window.solana after ${(i+1)*100}ms`);
+                    phantomFound(window.solana);
+                    found = true;
+                    break;
+                }
+            }
+            
+            if (!found) {
+                phantomNotFound();
+            }
+        }
+        
+        function phantomFound(provider) {
+            log('🎉 PHANTOM DETECTED!');
+            statusDiv.className = 'status found success-animation';
+            statusDiv.innerHTML = '✅ Phantom Wallet Detected! You can now connect.';
+            connectBtn.disabled = false;
+            window.phantomProvider = provider;
+        }
+        
+        function phantomNotFound() {
+            log('❌ Phantom not detected after 5 seconds');
+            statusDiv.className = 'status not-found';
+            statusDiv.innerHTML = `
+                ❌ Phantom Not Detected
+                <br><small>Please install Phantom or click its icon to activate it</small>
+            `;
+            
+            // Check for other wallets that might interfere
+            if (window.ethereum) {
+                log('⚠️ MetaMask detected - may be blocking Phantom');
+            }
+        }
+        
+        async function connectPhantom() {
+            if (!window.phantomProvider) {
+                alert('Phantom not detected! Please detect it first.');
+                return;
+            }
+            
+            try {
+                log('Requesting connection...');
+                const response = await window.phantomProvider.connect();
+                log(`✅ Connected! Address: ${response.publicKey.toString()}`);
+                
+                statusDiv.className = 'status found success-animation';
+                statusDiv.innerHTML = `
+                    ✅ Connected Successfully!
+                    <br><small>Address: ${response.publicKey.toString().slice(0,8)}...${response.publicKey.toString().slice(-8)}</small>
+                `;
+                
+                // Redirect back to main site after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+                
+            } catch (error) {
+                log(`❌ Connection error: ${error.message}`);
+                alert('Failed to connect: ' + error.message);
+            }
+        }
+        
+        // Auto-detect on load
+        window.addEventListener('load', () => {
+            setTimeout(detectPhantom, 500);
+        });
+        
+        // Listen for Phantom becoming available
+        let checkInterval = setInterval(() => {
+            if (window.phantom?.solana?.isPhantom || window.solana?.isPhantom) {
+                clearInterval(checkInterval);
+                if (statusDiv.className.includes('not-found')) {
+                    detectPhantom();
+                }
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
